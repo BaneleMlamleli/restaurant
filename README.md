@@ -1,5 +1,6 @@
 # Restaurant
 Restaurant management system
+<hr>
 
 ### Problem domain:
 A fast-growing medium sized restaurant is experiencing major problems as they are still operated using pen and paper methods, with little or no automation. The main issue is record maintenance. Since the restaurant was initially small everything is done by paper, the management is responsible for keeping all information saved and organized, which is no easy task. Everyday tabs are collected, data needs to be organized and employees need to get paid. This requires a great deal of time and attention from the managers. The second problem is the management of the kitchen stock as the management needs to be constantly aware of the stock that is available.
