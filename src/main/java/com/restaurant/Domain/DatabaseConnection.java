@@ -26,7 +26,7 @@ public class DatabaseConnection {
     public static void connection() throws SQLException{
         try{
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant", "root", "B!n@ryM@n01");
-            System.out.println("Database connection successfully established");
+            System.out.println("DatabaseFactory connection successfully established");
             /**
              * The purpose of this selection is to check if the stock table is
              * populated. If the variable 'availableData' is zero that means the
@@ -147,7 +147,7 @@ public class DatabaseConnection {
                         (resultset.getString("password").equals(password)) &&
                         (resultset.getString("title").equals(title)));
             }
-            System.out.println("User verification executed");
+            System.out.println("UserFactory verification executed");
         }catch(SQLSyntaxErrorException see){
             see.printStackTrace();
         }catch(SQLException ex){

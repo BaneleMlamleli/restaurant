@@ -1,4 +1,4 @@
 package com.restaurant.Factory;
 
-public class StaffFactory {
+public class StaffFactoryTest {
 }

@@ -1,4 +1,4 @@
-package com.restaurant.Domain;
+package com.restaurant.Factory;
 
-public class Chef {
+public class ChefFactory {
 }

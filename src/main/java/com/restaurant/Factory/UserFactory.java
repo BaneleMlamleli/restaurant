@@ -1,4 +1,4 @@
-package com.restaurant.Domain;
+package com.restaurant.Factory;
 
-public interface User {
+public interface UserFactory {
 }

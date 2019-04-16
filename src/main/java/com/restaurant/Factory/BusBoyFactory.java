@@ -1,4 +1,4 @@
-package com.restaurant.Domain;
+package com.restaurant.Factory;
 
-public class BusBoy {
+public class BusBoyFactory {
 }
