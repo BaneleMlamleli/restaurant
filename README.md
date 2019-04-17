@@ -20,4 +20,4 @@ The most feasible solution is to computerize restaurant operation so that all in
 5.	Bus boys will be able to view the real-time floor status allowing them to know which tables are clean, dirty, or occupied
 
 ### Domain Diagram:
-<img src="url.gif" alt="domain model" />
+<img src="src/main/java/com/restaurant/Asset/restaurantDomainModel.png" alt="domain model" />
