@@ -274,7 +274,7 @@ public class DatabaseConnection {
             prepStatement.setDouble(6, bill);
             prepStatement.setString(7, date);
             prepStatement.execute();
-            System.out.println("Order has been placed successfully");
+            System.out.println("OrderRepository has been placed successfully");
         }catch(SQLSyntaxErrorException see){
             see.printStackTrace();
         }catch(SQLException ex){
@@ -296,7 +296,7 @@ public class DatabaseConnection {
     
     /**
      * The below method will read all the data in the stock table and record
-     * the response in an ArrayList object of type Stock 
+     * the response in an ArrayList object of type StockRepository
      * @return 
      * @throws SQLException
      */
@@ -311,7 +311,7 @@ public class DatabaseConnection {
             while(resultset.next()){
                 stock.add(new Stock(resultset.getString("item_name"), resultset.getInt("usage")));
             }
-            System.out.println("All Stock data read successfully");
+            System.out.println("All StockRepository data read successfully");
         }catch(SQLSyntaxErrorException see){
             see.printStackTrace();
         }catch(SQLException ex){
@@ -331,7 +331,7 @@ public class DatabaseConnection {
     
     /**
      * The below method will read all the data in the order table and record
-     * the response in an ArrayList object of type Order 
+     * the response in an ArrayList object of type OrderRepository
      * @return 
      * @throws SQLException
      */
@@ -354,7 +354,7 @@ public class DatabaseConnection {
                 double order_bill = resultset.getDouble("order_bill");
                 order.add(new Order(order_id, comment, order_name, table_name, waiter_name, order_status, order_date, order_bill));
             }
-            System.out.println("All Order data read successfully");
+            System.out.println("All OrderRepository data read successfully");
         }catch(SQLSyntaxErrorException see){
             see.printStackTrace();
         }catch(SQLException ex){
@@ -374,7 +374,7 @@ public class DatabaseConnection {
     
     /**
      * The below method will read all the data in the 'table' table and record
-     * the response in an ArrayList object of type Table
+     * the response in an ArrayList object of type TableRepository
      * @return
      * @throws SQLException
      */
@@ -393,7 +393,7 @@ public class DatabaseConnection {
                 String waiter_name = resultset.getString("waiter_name");
                 table.add(new Table(table_id, table_status, table_name, waiter_name));
             }
-            System.out.println("All Table data read successfully");
+            System.out.println("All TableRepository data read successfully");
         }catch(SQLSyntaxErrorException see){
             see.printStackTrace();
         }catch(SQLException ex){

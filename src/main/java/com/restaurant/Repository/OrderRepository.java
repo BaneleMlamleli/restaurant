@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.restaurant.Domain;
+package com.restaurant.Repository;
 
 /**
  *
  * @author Shaun
  */
-public class Order {
+public class OrderRepository {
     private int order_id;
     private String comment;
     private String order_name;
@@ -19,10 +19,10 @@ public class Order {
     private String order_date;
     private double order_bill;
 
-    public Order() {
+    public OrderRepository() {
     }
 
-    public Order(int order_id, String comment, String order_name, String table_name, String waiter_name, String order_status, String order_date, double order_bill) {
+    public OrderRepository(int order_id, String comment, String order_name, String table_name, String waiter_name, String order_status, String order_date, double order_bill) {
         this.order_id = order_id;
         this.comment = comment;
         this.order_name = order_name;

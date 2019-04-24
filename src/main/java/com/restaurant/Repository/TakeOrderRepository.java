@@ -3,20 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.restaurant.Domain;
+package com.restaurant.Repository;
 
 /**
  *
  * @author banelemlamleli
  */
-public class TakeOrder {
+public class TakeOrderRepository {
     private boolean selectedRadioButtonItem;
     private String order_name;
 
-    public TakeOrder() {
+    public TakeOrderRepository() {
     }
 
-    public TakeOrder(boolean selectedRadioButtonItem, String order_name) {
+    public TakeOrderRepository(boolean selectedRadioButtonItem, String order_name) {
         this.selectedRadioButtonItem = selectedRadioButtonItem;
         this.order_name = order_name;
     }

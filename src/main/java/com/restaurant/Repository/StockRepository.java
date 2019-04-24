@@ -3,20 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.restaurant.Domain;
+package com.restaurant.Repository;
 
 /**
  *
  * @author banelemlamleli
  */
-public class Stock {
+public class StockRepository {
     private String itemName;
     private int usage;
     
-    public Stock(){
+    public StockRepository(){
     }
 
-    public Stock(String itemName, int usage) {
+    public StockRepository(String itemName, int usage) {
         this.itemName = itemName;
         this.usage = usage;
     }

@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.restaurant.Domain;
+package com.restaurant.Repository;
 
 /**
  *
  * @author Shaun
  */
-public class Table {
+public class TableRepository {
     private int table_id;
     private String table_status;
     private String table_name;
     private String waiter_name;
 
-    public Table() {
+    public TableRepository() {
     }
 
-    public Table(int table_id, String table_status, String table_name, String waiter_name) {
+    public TableRepository(int table_id, String table_status, String table_name, String waiter_name) {
         this.table_id = table_id;
         this.table_status = table_status;
         this.table_name = table_name;
