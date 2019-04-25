@@ -1,23 +1,24 @@
 package com.restaurant.Repository.Implementation;
 
 import com.restaurant.Domain.BusBoy;
+import com.restaurant.Repository.MainInterface;
 
 import java.util.Set;
 
-public class BusBoyRepository extends MainInterface<> {
+public class BusBoyRepositoryImpl extends MainInterface<BusBoy, String> {
 
-    private static BusBoyRepository busBoyRepository = null;
+    private static BusBoyRepositoryImpl busBoyRepositoryImpl = null;
     private Set<BusBoy> busBoySet;
 
-    private BusBoyRepository{
+    private BusBoyRepositoryImpl(){
 
     }
 
-    public static BusBoyRepository getBusBoyRepository(){
-        if (busBoyRepository == null) {
-            busBoyRepository = new BusBoyRepository();
+    public static BusBoyRepositoryImpl getBusBoyRepository(){
+        if (busBoyRepositoryImpl == null) {
+            busBoyRepositoryImpl = new BusBoyRepositoryImpl();
         }
-        return busBoyRepository;
+        return busBoyRepositoryImpl;
     }
 
     public BusBoy create(BusBoy busBoy){
@@ -26,7 +27,7 @@ public class BusBoyRepository extends MainInterface<> {
     }
 
     public BusBoy read(String busBoyName){
-
+        return  null;
     }
 
     public BusBoy update(BusBoy busBoy){
@@ -35,7 +36,7 @@ public class BusBoyRepository extends MainInterface<> {
     }
 
     public BusBoy delete(BusBoy busBoy){
-
+        return busBoy;
     }
 
     public Set<BusBoy> getAll(){

@@ -1,4 +1,4 @@
-package com.restaurant.Factory;
+package com.restaurant.Factory.Stock;
 
 import org.junit.Test;
 
