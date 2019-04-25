@@ -2,12 +2,14 @@ package com.restaurant.Repository.Implementation;
 
 import com.restaurant.Domain.BusBoy;
 
+import java.util.Set;
+
 public class BusBoyRepository extends MainInterface<> {
 
     private static BusBoyRepository busBoyRepository = null;
     private Set<BusBoy> busBoySet;
 
-    private BusBoyRepository {
+    private BusBoyRepository{
 
     }
 
