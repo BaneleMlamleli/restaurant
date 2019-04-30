@@ -1,4 +1,4 @@
 package com.restaurant.Domain.Order;
 
-public class CustardAndPudding {
+public class CustardAndPudding extends Menu{
 }

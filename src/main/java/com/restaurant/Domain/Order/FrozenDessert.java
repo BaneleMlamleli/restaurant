@@ -1,4 +1,4 @@
 package com.restaurant.Domain.Order;
 
-public class FrozenDessert {
+public class FrozenDessert extends Menu{
 }

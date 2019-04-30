@@ -1,4 +1,4 @@
 package com.restaurant.Domain.Order;
 
-public class Drinks {
+public class Drinks extends Menu{
 }

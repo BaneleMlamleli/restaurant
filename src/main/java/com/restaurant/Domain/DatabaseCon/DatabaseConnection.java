@@ -9,76 +9,18 @@ package com.restaurant.Domain.DatabaseCon;
  *
  * @author Banele
  */
-import com.restaurant.Domain.Order;
+import com.restaurant.Domain.Order.Order;
 import com.restaurant.Domain.Stock.Stock;
 import com.restaurant.Domain.Table.Table;
 
 import java.io.*;
 import java.sql.*;
 import java.util.*;
+
+import static com.restaurant.Domain.DatabaseCon.Database.*;
+
 public class DatabaseConnection {
-    public static Statement statement = null;
-    public static ResultSet resultset = null;
-    public static Connection connection = null;
-    public static PreparedStatement prepStatement = null;
-    
-    /**
-     * This method will connect to the local MySQL database
-     * It will also insert the individual stock items into the stock database table
-     * @throws SQLException
-     */
-    public static void connection() throws SQLException{
-        try{
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant", "root", "B!n@ryM@n01");
-            System.out.println("DatabaseFactory connection successfully established");
-            /**
-             * The purpose of this selection is to check if the stock table is
-             * populated. If the variable 'availableData' is zero that means the
-             * table is empty and can be populated with default data.
-             */
-            statement = connection.createStatement();
-            resultset = statement.executeQuery("SELECT * FROM restaurant.stock");
-            int availableData = 0;
-            while(resultset.next()){
-                availableData++;
-            }
-            if(availableData == 0){
-                // inserting all the individual menu items into the stock table and initialising the stock to zero
-                String itemName[] = {"White cheese", "Parmesan cheese", "Cheese", "Beef", "Beef patty",
-                    "Chicken breast", "Chicken patty", "Chicken strips", "Calamari", "Blue point oyster", "Shrimp",
-                    "Crawfish", "Garlic bread", "Crouton", "Green leaf lettuce", "Red leaf lettuce", "Lemon",
-                    "Romaine lettuce", "Gherkins", "Caesar dressing", "Cucumber", "Carrot", "Red onion",
-                    "White onion", "Roma tomatoes", "Black-eyed peas", "Black pepper", "canola oil", "Flour"};
 
-                for (int a = 0; a < itemName.length; a++) {
-                    // create a prepared statement
-                    prepStatement = connection.prepareStatement("INSERT INTO restaurant.stock (restaurant.stock.item_name, restaurant.stock.usage)\n" +
-                            "VALUES (?, ?);");
-
-                    // Execute SQL query
-                    prepStatement.setString(1, itemName[a]);
-                    prepStatement.setInt(2, 0);
-                    prepStatement.execute();
-                }
-                System.out.println("Default stock items have been inserted into the stock database table");
-            }
-        }catch(SQLSyntaxErrorException see){
-            see.printStackTrace();
-        }catch(SQLException ex){
-            ex.printStackTrace();
-        }finally{
-            if(resultset != null){
-                resultset.close();
-            }
-            if(statement != null){
-                statement.close();
-            }
-            if(prepStatement != null){
-                prepStatement.close();
-            }
-        }
-    }
-    
     /**
      * This method will read the restaurant.sql scrip that contains all the code
      * for creating database, tables and relationships
@@ -151,7 +93,7 @@ public class DatabaseConnection {
                         (resultset.getString("password").equals(password)) &&
                         (resultset.getString("title").equals(title)));
             }
-            System.out.println("UserRepository verification executed");
+            System.out.println("UserImplementation verification executed");
         }catch(SQLSyntaxErrorException see){
             see.printStackTrace();
         }catch(SQLException ex){
@@ -278,7 +220,7 @@ public class DatabaseConnection {
             prepStatement.setDouble(6, bill);
             prepStatement.setString(7, date);
             prepStatement.execute();
-            System.out.println("OrderRepository has been placed successfully");
+            System.out.println("OrderImplementation has been placed successfully");
         }catch(SQLSyntaxErrorException see){
             see.printStackTrace();
         }catch(SQLException ex){
@@ -300,7 +242,7 @@ public class DatabaseConnection {
     
     /**
      * The below method will read all the data in the stock table and record
-     * the response in an ArrayList object of type StockRepository
+     * the response in an ArrayList object of type StockImplementation
      * @return 
      * @throws SQLException
      */
@@ -313,9 +255,9 @@ public class DatabaseConnection {
             resultset=  statement.executeQuery("SELECT * FROM restaurant.stock");
             // processing the results to very the entered login details
             while(resultset.next()){
-                stock.add(new Stock(resultset.getString("item_name"), resultset.getInt("usage")));
+               // stock.add(new StockImplementation(resultset.getString("item_name"), resultset.getInt("usage")));
             }
-            System.out.println("All StockRepository data read successfully");
+            System.out.println("All StockImplementation data read successfully");
         }catch(SQLSyntaxErrorException see){
             see.printStackTrace();
         }catch(SQLException ex){
@@ -335,7 +277,7 @@ public class DatabaseConnection {
     
     /**
      * The below method will read all the data in the order table and record
-     * the response in an ArrayList object of type OrderRepository
+     * the response in an ArrayList object of type OrderImplementation
      * @return 
      * @throws SQLException
      */
@@ -356,9 +298,9 @@ public class DatabaseConnection {
                 String order_status = resultset.getString("order_status");
                 String order_date = resultset.getString("order_date");
                 double order_bill = resultset.getDouble("order_bill");
-                order.add(new Order(order_id, comment, order_name, table_name, waiter_name, order_status, order_date, order_bill));
+                // order.add(new OrderImplementation(order_id, comment, order_name, table_name, waiter_name, order_status, order_date, order_bill));
             }
-            System.out.println("All OrderRepository data read successfully");
+            System.out.println("All OrderImplementation data read successfully");
         }catch(SQLSyntaxErrorException see){
             see.printStackTrace();
         }catch(SQLException ex){
@@ -395,7 +337,7 @@ public class DatabaseConnection {
                 String table_status = resultset.getString("table_status");
                 String table_name = resultset.getString("table_name");
                 String waiter_name = resultset.getString("waiter_name");
-                table.add(new Table(table_id, table_status, table_name, waiter_name));
+                // table.add(new TableImplementation(table_id, table_status, table_name, waiter_name));
             }
             System.out.println("All TableRepository data read successfully");
         }catch(SQLSyntaxErrorException see){
@@ -414,11 +356,4 @@ public class DatabaseConnection {
         }
         return table;
     }
-    
-//    public static void main(String[]args) throws SQLException{
-//    testing date
-//        java.util.Date date = new java.util.Date();
-//        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-//        System.out.println(formatter.format(date));
-//    }
 }

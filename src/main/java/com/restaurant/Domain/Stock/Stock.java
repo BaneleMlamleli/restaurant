@@ -12,33 +12,45 @@ package com.restaurant.Domain.Stock;
 public class Stock {
     private String itemName;
     private int usage;
-    
-    public Stock(){
+
+    private Stock(Stock stock){
+
     }
 
-    public Stock(String itemName, int usage) {
-        this.itemName = itemName;
-        this.usage = usage;
+    private Stock(Builder builder){
+        this.itemName = builder.itemName;
+        this.usage = builder.usage;
     }
 
     public String getItemName() {
         return itemName;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
     public int getUsage() {
         return usage;
     }
 
-    public void setUsage(int usage) {
-        this.usage = usage;
+    public static class Builder {
+        private String itemName;
+        private int usage;
+
+        public Builder itemName(String itemName){
+            this.itemName = itemName;
+            return this;
+        }
+
+        public Builder usage(int usage) {
+            this.usage = usage;
+            return this;
+        }
+
+        public Stock build(){
+            return new Stock(this);
+        }
     }
 
     @Override
     public String toString() {
-        return "StockRepository{" + "itemName=" + itemName + ", usage=" + usage + '}';
+        return "StockImplementation{" + "itemName=" + itemName + ", usage=" + usage + '}';
     }
 }

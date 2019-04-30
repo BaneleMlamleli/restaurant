@@ -13,32 +13,38 @@ public class TakeOrder {
     private boolean selectedRadioButtonItem;
     private String order_name;
 
-    public TakeOrder() {
+    private TakeOrder(TakeOrder takeOrder){
+
     }
 
-    public TakeOrder(boolean selectedRadioButtonItem, String order_name) {
-        this.selectedRadioButtonItem = selectedRadioButtonItem;
-        this.order_name = order_name;
+    private TakeOrder(Builder builder){
+        this.order_name = builder.order_name;
+        this.selectedRadioButtonItem = builder.selectedRadioButtonItem;
     }
 
-    public boolean isSelectedRadioButtonItem() {
-        return selectedRadioButtonItem;
-    }
 
-    public void setSelectedRadioButtonItem(boolean selectedRadioButtonItem) {
-        this.selectedRadioButtonItem = selectedRadioButtonItem;
-    }
 
-    public String getOrder_name() {
-        return order_name;
-    }
+    public static class Builder {
+        private boolean selectedRadioButtonItem;
+        private String order_name;
 
-    public void setOrder_name(String order_name) {
-        this.order_name = order_name;
+        public Builder selectedRadioButtonItem(boolean selectedRadioButtonItem){
+            this.selectedRadioButtonItem = selectedRadioButtonItem;
+            return this;
+        }
+
+        public Builder order_name(String order_name) {
+            this.order_name = order_name;
+            return this;
+        }
+
+        public TakeOrder build(){
+            return new TakeOrder(this);
+        }
     }
 
     @Override
     public String toString() {
-        return "OrderRepository{" + "selectedRadioButtonItem=" + selectedRadioButtonItem + ", order_name=" + order_name + '}';
+        return "OrderImplementation{" + "selectedRadioButtonItem=" + selectedRadioButtonItem + ", order_name=" + order_name + '}';
     }
 }
