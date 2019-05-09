@@ -2,7 +2,7 @@ package com.restaurant.Factory.Stock;
 
 import org.junit.Test;
 
-public class StockFactoryTest {
+public class StockTestFactoryTest {
 
     @Test
     public void getStock(){

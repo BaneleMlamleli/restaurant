@@ -1,4 +1,4 @@
 package com.restaurant.Factory.Login;
 
-public class UserAccessRight {
+public interface UserFactoryTest {
 }
