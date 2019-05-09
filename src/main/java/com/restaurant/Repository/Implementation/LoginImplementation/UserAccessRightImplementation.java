@@ -9,7 +9,7 @@ import java.util.Set;
 
 public class UserAccessRightImplementation implements UserAccessRightRepository {
     private static UserAccessRightImplementation userAccessRightImplementation = null;
-    private Map<UserAccessRight, String> userAccessRightStringMap;
+    private Map<String, UserAccessRight> userAccessRightStringMap;
 
     private UserAccessRightImplementation(){
         userAccessRightStringMap = new HashMap<>();
@@ -24,16 +24,17 @@ public class UserAccessRightImplementation implements UserAccessRightRepository 
 
     @Override
     public Set<UserAccessRight> getAll() {
-        Set<UserAccessRight> getAllData = null;
-        for(int a = 0; a < userAccessRightStringMap.size(); a++){
-            getAllData.add(userAccessRightStringMap.get(UserAccessRight user));
-        }
-        return getAllData;
+//        Set<UserAccessRight> getAllData = null;
+//        for(int a = 0; a < userAccessRightStringMap.size(); a++){
+//            getAllData.add(userAccessRightStringMap.get(UserAccessRight));
+//        }
+//        return getAllData;
+        return  null;
     }
 
     @Override
     public UserAccessRight create(UserAccessRight userAccessRight) {
-        userAccessRightStringMap.put(userAccessRight.getTitle(), userAccessRight);
+        userAccessRightStringMap.put(userAccessRight.getTitle(),userAccessRight);
         UserAccessRight createUserAccessRight = userAccessRightStringMap.get(userAccessRight.getTitle());
         return createUserAccessRight;
     }
@@ -54,6 +55,5 @@ public class UserAccessRightImplementation implements UserAccessRightRepository 
     @Override
     public void delete(String s) {
         userAccessRightStringMap.remove(s);
-
     }
 }

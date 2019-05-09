@@ -8,7 +8,7 @@ import java.util.*;
 public class RegisterNewUserImplementation implements RegisterNewUserRepository {
 
     private static RegisterNewUserImplementation registerNewUserImplementation = null;
-    private Map<RegisterNewUser, String> registerNewUserStringMap;
+    private Map<String, RegisterNewUser> registerNewUserStringMap;
 
     private RegisterNewUserImplementation(){
         registerNewUserStringMap = new HashMap<>();
