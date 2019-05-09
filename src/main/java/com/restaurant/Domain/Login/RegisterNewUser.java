@@ -62,5 +62,11 @@ public class RegisterNewUser {
         public RegisterNewUser build(){
             return new RegisterNewUser(this);
         }
+
+        public Object copy(RegisterNewUser savedRegisteredNewUser) {
+            this.name = savedRegisteredNewUser.name;
+            this.surname = savedRegisteredNewUser.surname;
+            return this;
+        }
     }
 }
