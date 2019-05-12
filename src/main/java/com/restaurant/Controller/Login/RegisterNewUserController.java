@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Set;
 
 @RestController
-@RequestMapping
+@RequestMapping("restaurant/registerNewUser")
 public class RegisterNewUserController {
     @Autowired
     private RegisterNewUserServiceImpl service;
 
-    @GetMapping("/create/{title}")///{name}/{surname}/{password}")
+    @GetMapping("/create/{title}/{name}/{surname}/{password}")
     public @ResponseBody
-    RegisterNewUser create(@PathVariable String title){//, String name, String surname, String password){
-        RegisterNewUser registerNewUser = RegisterNewUserFactory.getRegisterUser(title, "name", "surname", "password");
+    RegisterNewUser create(@PathVariable String title, @PathVariable String name, @PathVariable String surname, @PathVariable String password){
+        RegisterNewUser registerNewUser = RegisterNewUserFactory.getRegisterUser(title, name, surname, password);
         return service.create(registerNewUser);
     }
 
