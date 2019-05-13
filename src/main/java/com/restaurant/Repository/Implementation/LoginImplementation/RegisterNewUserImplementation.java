@@ -23,7 +23,10 @@ public class RegisterNewUserImplementation implements RegisterNewUserRepository 
 
     @Override
     public Set<RegisterNewUser> getAll() {
-        return null;
+        Collection<RegisterNewUser> registerNewUsers = this.registerNewUserStringMap.values();
+        Set<RegisterNewUser> set = new HashSet<>();
+        set.addAll(registerNewUsers);
+        return set;
     }
 
     @Override

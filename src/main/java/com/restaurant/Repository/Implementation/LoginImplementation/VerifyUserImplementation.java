@@ -3,9 +3,7 @@ package com.restaurant.Repository.Implementation.LoginImplementation;
 import com.restaurant.Domain.Login.VerifyUser;
 import com.restaurant.Repository.Login.VerifyUserRepository;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class VerifyUserImplementation  implements VerifyUserRepository {
 
@@ -25,7 +23,10 @@ public class VerifyUserImplementation  implements VerifyUserRepository {
     }
     @Override
     public Set<VerifyUser> getAll() {
-        return null;
+        Collection<VerifyUser> verifyUserCollection = this.verifyUserMap.values();
+        Set<VerifyUser> set = new HashSet<>();
+        set.addAll(verifyUserCollection);
+        return set;
     }
 
     @Override
