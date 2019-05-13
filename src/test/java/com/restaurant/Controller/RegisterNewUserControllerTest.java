@@ -1,4 +1,4 @@
-package com.restaurant.Controller.Login;
+package com.restaurant.Controller;
 
 public class RegisterNewUserControllerTest {
 
