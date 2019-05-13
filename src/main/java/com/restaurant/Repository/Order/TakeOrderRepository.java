@@ -6,15 +6,14 @@
 package com.restaurant.Repository.Order;
 
 import com.restaurant.Domain.Order.TakeOrder;
+import com.restaurant.Repository.MainInterface;
+
+import java.util.Set;
 
 /**
  *
  * @author banelemlamleli
  */
-public class TakeOrderRepository {
-    public static TakeOrder getTakeOrder(boolean selectedRadioButtonItem, String order_name){
-        return new TakeOrder.Builder().selectedRadioButtonItem(selectedRadioButtonItem)
-                .order_name(order_name)
-                .build();
-    }
+public interface TakeOrderRepository extends MainInterface<TakeOrder, String> {
+    Set<TakeOrder> getAll();
 }

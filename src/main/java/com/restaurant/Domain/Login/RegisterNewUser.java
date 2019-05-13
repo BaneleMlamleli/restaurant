@@ -7,7 +7,6 @@ public class RegisterNewUser {
     private String password;
 
     private RegisterNewUser(RegisterNewUser registerNewUser){
-
     }
 
     private RegisterNewUser(Builder builder){

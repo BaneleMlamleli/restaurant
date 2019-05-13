@@ -6,21 +6,60 @@
 package com.restaurant.Repository.Implementation.OrderImplementation;
 
 import com.restaurant.Domain.Order.Order;
+import com.restaurant.Repository.Order.OrderRepository;
+
+import java.util.*;
 
 /**
  *
  * @author Shaun
  */
-public class OrderImplementation {
-    public static Order getOrder(int order_id, String comment, String order_name, String table_name, String waiter_name, String order_status, String order_date, double order_bill){
-        return new Order.Builder().order_id(order_id)
-                .comment(comment)
-                .order_name(order_name)
-                .table_name(table_name)
-                .waiter_name(waiter_name)
-                .order_status(order_status)
-                .order_date(order_date)
-                .order_bill(order_bill)
-                .build();
+public class OrderImplementation implements OrderRepository {
+
+    private static OrderImplementation orderImplementation = null;
+    private Map<String, Order> orderMap;
+
+    private OrderImplementation(){
+        orderMap = new HashMap<>();
+    }
+
+    public static OrderRepository getRepository(){
+        if ( orderImplementation == null){
+            orderImplementation = new OrderImplementation();
+        }
+        return  orderImplementation;
+    }
+
+    @Override
+    public Set<Order> getAll() {
+        Collection<Order> allOrders = this.orderMap.values();
+        Set<Order> set = new HashSet<>();
+        set.addAll(allOrders);
+        return set;
+    }
+
+    @Override
+    public Order create(Order order) {
+        orderMap.put(order.getOrder_name(), order);
+        Order reg = orderMap.get(order.getOrder_name());
+        return reg;
+    }
+
+    @Override
+    public Order read(String s) {
+        Order readOrder = orderMap.get(s);
+        return readOrder;
+    }
+
+    @Override
+    public Order update(Order order) {
+        orderMap.put(order.getOrder_name(), order);
+        Order reg = orderMap.get(order.getOrder_name());
+        return reg;
+    }
+
+    @Override
+    public void delete(String s) {
+        orderMap.remove(s);
     }
 }

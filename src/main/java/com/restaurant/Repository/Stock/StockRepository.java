@@ -6,15 +6,14 @@
 package com.restaurant.Repository.Stock;
 
 import com.restaurant.Domain.Stock.Stock;
+import com.restaurant.Repository.MainInterface;
+
+import java.util.Set;
 
 /**
  *
  * @author banelemlamleli
  */
-public class StockRepository {
-    public static Stock getStock(String itemName, int usage){
-        return new Stock.Builder().itemName(itemName)
-                .usage(usage)
-                .build();
-    }
+public interface StockRepository extends MainInterface<Stock, String> {
+    Set<Stock> getAll();
 }

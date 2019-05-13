@@ -52,6 +52,5 @@ public class RegisterNewUserImplementation implements RegisterNewUserRepository 
     @Override
     public void delete(String s) {
         registerNewUserStringMap.remove(s);
-
     }
 }
