@@ -3,9 +3,7 @@ package com.restaurant.Repository.Implementation.LoginImplementation;
 import com.restaurant.Domain.Login.UserAccessRight;
 import com.restaurant.Repository.Login.UserAccessRightRepository;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class UserAccessRightImplementation implements UserAccessRightRepository {
     private static UserAccessRightImplementation userAccessRightImplementation = null;
@@ -24,12 +22,10 @@ public class UserAccessRightImplementation implements UserAccessRightRepository 
 
     @Override
     public Set<UserAccessRight> getAll() {
-//        Set<UserAccessRight> getAllData = null;
-//        for(int a = 0; a < userAccessRightStringMap.size(); a++){
-//            getAllData.add(userAccessRightStringMap.get(UserAccessRight));
-//        }
-//        return getAllData;
-        return  null;
+        Collection<UserAccessRight> userAccessRights = this.userAccessRightStringMap.values();
+        Set<UserAccessRight> set = new HashSet<>();
+        set.addAll(userAccessRights);
+        return set;
     }
 
     @Override
