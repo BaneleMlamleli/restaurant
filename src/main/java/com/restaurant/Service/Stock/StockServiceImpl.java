@@ -1,9 +1,13 @@
 package com.restaurant.Service.Stock;
 
+import com.restaurant.Domain.Stock.Stock;
+import com.restaurant.Repository.Implementation.StockImplementation.StockImplementation;
 import com.restaurant.Repository.Stock.StockRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class StockServiceImpl implements StockService {
 
     private static StockServiceImpl service = null;
@@ -14,18 +18,18 @@ public class StockServiceImpl implements StockService {
     }
 
     public static StockServiceImpl getService(){
-        if (service == null) service = new RegisterNewUserServiceImpl();
+        if (service == null) service = new StockServiceImpl();
         return service;
     }
 
     @Override
-    public RegisterNewUser create(RegisterNewUser registerNewUser) {
-        return this.repository.create(registerNewUser);
+    public Stock create(Stock stock) {
+        return this.repository.create(stock);
     }
 
     @Override
-    public RegisterNewUser update(RegisterNewUser course) {
-        return this.repository.update(course);
+    public Stock update(Stock stock) {
+        return this.repository.update(stock);
     }
 
     @Override
@@ -34,12 +38,12 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public RegisterNewUser read(String s) {
+    public Stock read(String s) {
         return this.repository.read(s);
     }
 
     @Override
-    public Set<RegisterNewUser> getAll() {
+    public Set<Stock> getAll() {
         return this.repository.getAll();
     }
 }
