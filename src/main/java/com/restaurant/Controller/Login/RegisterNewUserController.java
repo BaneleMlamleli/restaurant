@@ -14,16 +14,34 @@ public class RegisterNewUserController {
     @Autowired
     private RegisterNewUserServiceImpl service;
 
-    @GetMapping("/create/{title}/{name}/{surname}/{password}")
+    @PostMapping("/create/{title}/{name}/{surname}/{password}")
     public @ResponseBody
     RegisterNewUser create(@PathVariable String title, @PathVariable String name, @PathVariable String surname, @PathVariable String password){
         RegisterNewUser registerNewUser = RegisterNewUserFactory.getRegisterUser(title, name, surname, password);
         return service.create(registerNewUser);
     }
 
-    @GetMapping("/getall")
+    @GetMapping("/read/{id}")
+    @ResponseBody
+    public RegisterNewUser read(@PathVariable String id) {
+        return service.read(id);
+    }
+
+    @GetMapping("/read/getall")
     @ResponseBody
     public Set<RegisterNewUser> getAll(){
         return service.getAll();
+    }
+
+    @PostMapping("/update")
+    @ResponseBody
+    public RegisterNewUser update(RegisterNewUser registerNewUser) {
+        return service.update(registerNewUser);
+    }
+
+    @GetMapping("/delete/{id}")
+    @ResponseBody
+    public void delete(@PathVariable String id) {
+        service.delete(id);
     }
 }

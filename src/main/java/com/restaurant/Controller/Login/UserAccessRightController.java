@@ -15,16 +15,28 @@ public class UserAccessRightController {
     @Autowired
     private UserAccessRightServiceImpl service;
 
-    @GetMapping("/create/{title}/{username}")
+    @PostMapping("/create/{title}/{username}")
     public @ResponseBody
     UserAccessRight create(@PathVariable String title, @PathVariable String username){
         UserAccessRight userAccessRight = UserAccessRightFactory.getUserAccessRight(title, username);
         return service.create(userAccessRight);
     }
 
-    @GetMapping("/getall")
+    @GetMapping("/read/getall")
     @ResponseBody
     public Set<UserAccessRight> getAll(){
         return service.getAll();
+    }
+
+    @PostMapping("/update")
+    @ResponseBody
+    public UserAccessRight update(UserAccessRight userAccessRight) {
+        return service.update(userAccessRight);
+    }
+
+    @GetMapping("/delete/{id}")
+    @ResponseBody
+    public void delete(@PathVariable String id) {
+        service.delete(id);
     }
 }

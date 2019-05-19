@@ -15,16 +15,28 @@ public class VerifyUserController {
     @Autowired
     private VerifyUserServiceImpl service;
 
-    @GetMapping("/create/{title}/{username}/{password}")
+    @PostMapping("/create/{title}/{username}/{password}")
     public @ResponseBody
     VerifyUser create(@PathVariable String title, @PathVariable String username, @PathVariable String password){
         VerifyUser verifyUser = VerifyUserFactory.getUserAccessRight(title, username, password);
         return service.create(verifyUser);
     }
 
-    @GetMapping("/getall")
+    @GetMapping("/read/getall")
     @ResponseBody
     public Set<VerifyUser> getAll(){
         return service.getAll();
+    }
+
+    @PostMapping("/update")
+    @ResponseBody
+    public VerifyUser update(VerifyUser verifyUser) {
+        return service.update(verifyUser);
+    }
+
+    @GetMapping("/delete/{id}")
+    @ResponseBody
+    public void delete(@PathVariable String id) {
+        service.delete(id);
     }
 }
