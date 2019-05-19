@@ -19,9 +19,21 @@ public class StockController {
         return service.create(stock);
     }
 
-    @GetMapping("/getall")
+    @GetMapping("read/getall")
     @ResponseBody
     public Set<Stock> getAll(){
         return service.getAll();
+    }
+
+    @PostMapping("/update")
+    @ResponseBody
+    public Stock update(Stock stock) {
+        return service.update(stock);
+    }
+
+    @GetMapping("/delete/{id}")
+    @ResponseBody
+    public void delete(@PathVariable String id) {
+        service.delete(id);
     }
 }

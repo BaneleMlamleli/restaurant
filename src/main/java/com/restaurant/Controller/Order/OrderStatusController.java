@@ -14,16 +14,28 @@ public class OrderStatusController {
     @Autowired
     private OrderStatusServiceImpl service;
 
-    @GetMapping("/create/{status}")
+    @PostMapping("/create/{status}")
     public @ResponseBody
     OrderStatus create(@PathVariable String status){
         OrderStatus orderStatus = OrderStatusFactory.getOrderStatus(status);
         return service.create(orderStatus);
     }
 
-    @GetMapping("/getall")
+    @GetMapping("read/getall")
     @ResponseBody
     public Set<OrderStatus> getAll(){
         return service.getAll();
+    }
+
+    @PostMapping("/update")
+    @ResponseBody
+    public OrderStatus update(OrderStatus order) {
+        return service.update(order);
+    }
+
+    @GetMapping("/delete/{id}")
+    @ResponseBody
+    public void delete(@PathVariable String id) {
+        service.delete(id);
     }
 }

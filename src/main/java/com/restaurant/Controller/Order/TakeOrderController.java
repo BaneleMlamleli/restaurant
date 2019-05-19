@@ -17,16 +17,28 @@ public class TakeOrderController {
     @Autowired
     private TakeOrderServiceImpl service;
 
-    @GetMapping("/create/{selectedRadioButtonItem}/{order_name}")
+    @PostMapping("/create/{selectedRadioButtonItem}/{order_name}")
     public @ResponseBody
     TakeOrder create(@PathVariable boolean selectedRadioButtonItem, @PathVariable String order_name){
         TakeOrder takeOrder = TakeOrderFactory.getTakeOrder(selectedRadioButtonItem, order_name);
         return service.create(takeOrder);
     }
 
-    @GetMapping("/getall")
+    @GetMapping("read/getall")
     @ResponseBody
     public Set<TakeOrder> getAll(){
         return service.getAll();
+    }
+
+    @PostMapping("/update")
+    @ResponseBody
+    public TakeOrder update(TakeOrder takeOrder) {
+        return service.update(takeOrder);
+    }
+
+    @GetMapping("/delete/{id}")
+    @ResponseBody
+    public void delete(@PathVariable String id) {
+        service.delete(id);
     }
 }
