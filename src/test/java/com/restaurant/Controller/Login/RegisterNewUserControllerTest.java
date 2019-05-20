@@ -31,7 +31,7 @@ public class RegisterNewUserControllerTest {
     }
 
     @Ignore
-    public void testGetRegisterNewUserById() {
+    public void testGetRegisterNewUserByURI() {
         RegisterNewUser registerNewUser = restTemplate.getForObject(baseURL + "/read/Banele", RegisterNewUser.class);
         System.out.println(registerNewUser.getName());
         assertNotNull(registerNewUser);
@@ -48,7 +48,7 @@ public class RegisterNewUserControllerTest {
 
     @Ignore
     public void testUpdateRegisterNewUser() {
-        int id = 1;
+        String id = "Hendrick";
         RegisterNewUser registerNewUser = restTemplate.getForObject(baseURL + "/update/" + id, RegisterNewUser.class);
         restTemplate.put(baseURL + "/update/" + id, registerNewUser);
         RegisterNewUser updatedRegisterNewUser = restTemplate.getForObject(baseURL + "/update/" + id, RegisterNewUser.class);
@@ -57,7 +57,7 @@ public class RegisterNewUserControllerTest {
 
     @Ignore
     public void testDeleteRegisterNewUser() {
-        int id = 2;
+        String id = "Banele";
         RegisterNewUser registerNewUser = restTemplate.getForObject(baseURL + "/delete/" + id, RegisterNewUser.class);
         assertNotNull(registerNewUser);
         restTemplate.delete(baseURL + "/delete/" + id);

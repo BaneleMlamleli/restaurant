@@ -14,15 +14,17 @@ public class RegisterNewUserController {
     @Autowired
     private RegisterNewUserServiceImpl service;
 
-    @PostMapping("/create/{title}/{name}/{surname}/{password}")
-    public @ResponseBody
+    //@PostMapping("/create/{title}/{name}/{surname}/{password}")
+    @RequestMapping(value = "/create/{title}/{name}/{surname}/{password}", method = RequestMethod.POST)
+    public //@ResponseBody
     RegisterNewUser create(@PathVariable String title, @PathVariable String name, @PathVariable String surname, @PathVariable String password){
         RegisterNewUser registerNewUser = RegisterNewUserFactory.getRegisterUser(title, name, surname, password);
         return service.create(registerNewUser);
     }
 
-    @GetMapping("/read/{id}")
-    @ResponseBody
+//    @GetMapping("/read/{id}")
+//    @ResponseBody
+    @RequestMapping(value = "/read/{id}", method = RequestMethod.GET)
     public RegisterNewUser read(@PathVariable String id) {
         return service.read(id);
     }
