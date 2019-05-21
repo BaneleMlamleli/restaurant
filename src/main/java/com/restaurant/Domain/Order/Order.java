@@ -119,6 +119,18 @@ public class Order {
         public Order build() {
             return new Order(this);
         }
+
+        public Order.Builder copy(Order savedOrder) {
+            this.order_id = savedOrder.order_id;
+            this.comment = savedOrder.comment;
+            this.order_name = savedOrder.order_name;
+            this.table_name = savedOrder.table_name;
+            this.waiter_name = savedOrder.waiter_name;
+            this.order_status = savedOrder.order_status;
+            this.order_date = savedOrder.order_date;
+            this.order_bill = savedOrder.order_bill;
+            return this;
+        }
     }
 
     @Override

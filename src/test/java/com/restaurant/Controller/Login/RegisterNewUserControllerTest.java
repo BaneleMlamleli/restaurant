@@ -16,6 +16,7 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+
 @RunWith(SpringRunner.class)
 public class RegisterNewUserControllerTest {
     @Autowired
@@ -40,7 +41,6 @@ public class RegisterNewUserControllerTest {
     @Ignore
     public void testCreateRegisterNewUser() {
         RegisterNewUser registerNewUser = RegisterNewUserFactory.getRegisterUser("Chef","Banele","Mlamleli", "Test01");
-
         ResponseEntity<RegisterNewUser> postResponse = restTemplate.postForEntity(baseURL + "/create/{title}/{name}/{surname}/{password}", registerNewUser, RegisterNewUser.class);
         assertNotNull(postResponse);
         assertNotNull(postResponse.getBody());

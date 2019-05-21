@@ -26,5 +26,10 @@ public class OrderStatus {
         public OrderStatus build(){
             return new OrderStatus(this);
         }
+
+        public Builder copy(OrderStatus savedOrderStatus) {
+            this.status = savedOrderStatus.status;
+            return this;
+        }
     }
 }

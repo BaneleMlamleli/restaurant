@@ -65,6 +65,8 @@ public class RegisterNewUser {
         public Object copy(RegisterNewUser savedRegisteredNewUser) {
             this.name = savedRegisteredNewUser.name;
             this.surname = savedRegisteredNewUser.surname;
+            this.title = savedRegisteredNewUser.title;
+            this.password = savedRegisteredNewUser.password;
             return this;
         }
     }

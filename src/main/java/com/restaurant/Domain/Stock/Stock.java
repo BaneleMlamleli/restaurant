@@ -47,6 +47,12 @@ public class Stock {
         public Stock build(){
             return new Stock(this);
         }
+
+        public Builder copy(Stock savedStock) {
+            this.itemName = savedStock.itemName;
+            this.usage = savedStock.usage;
+            return this;
+        }
     }
 
     @Override

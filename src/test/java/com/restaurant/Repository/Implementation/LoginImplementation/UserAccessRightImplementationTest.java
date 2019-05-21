@@ -55,14 +55,13 @@ public class UserAccessRightImplementationTest {
 
     @Test
     public void c_update() {
-//        UserAccessRight savedUserAccessRight = getSavedUserAccessRight();
-//        String title = "Manager";
-//        UserAccessRight userAccessRght= new UserAccessRight.Builder().copy(getSavedUserAccessRight()).build();
-//        System.out.println("In update, about_to_updated = " + userAccessRght);
-//        UserAccessRight updated = this.repository.update(userAccessRght);
-//        System.out.println("In update, updated = " + updated);
-//        Assert.assertSame(title, updated.getTitle());
-//        d_getAll();
+        String title = "Manager";
+        UserAccessRight userAccessRght= new UserAccessRight.Builder().copy(getSavedUserAccessRight()).build();
+        System.out.println("In update, about_to_updated = " + userAccessRght);
+        UserAccessRight updated = this.repository.update(userAccessRght);
+        System.out.println("In update, updated = " + updated);
+        Assert.assertSame(title, updated.getTitle());
+        d_getAll();
     }
 
     @Test

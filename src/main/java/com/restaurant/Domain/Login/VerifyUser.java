@@ -50,5 +50,12 @@ public class VerifyUser {
         public VerifyUser build(){
             return new VerifyUser(this);
         }
+
+        public Object copy(VerifyUser saved) {
+            this.title = saved.title;
+            this.username = saved.username;
+            this.password = saved.password;
+            return  this;
+        }
     }
 }

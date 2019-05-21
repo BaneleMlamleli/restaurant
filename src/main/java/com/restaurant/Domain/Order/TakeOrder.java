@@ -41,6 +41,12 @@ public class TakeOrder {
         public TakeOrder build(){
             return new TakeOrder(this);
         }
+
+        public Builder copy(TakeOrder savedTakeOrder) {
+            this.order_name = savedTakeOrder.order_name;
+            this.selectedRadioButtonItem = savedTakeOrder.selectedRadioButtonItem;
+            return this;
+        }
     }
 
     @Override

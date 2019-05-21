@@ -52,13 +52,15 @@ public class RegisterNewUserImplementationTest{
 
     @Test
     public void c_update() {
-//        RegisterNewUser savedRegisteredNewUser = getSavedRegisteredNewUser();
-//        String newname = "New Test Course Name";
+//        String title = "Chef";
+//        String name = "Banele";
+//        String surname = "Mlamleli";
+//        String password = "Test01";
 //        RegisterNewUser regUser = new RegisterNewUser.Builder().copy(getSavedRegisteredNewUser()).build();
 //        System.out.println("In update, about_to_updated = " + regUser);
 //        RegisterNewUser updated = this.repository.update(regUser);
 //        System.out.println("In update, updated = " + updated);
-//        Assert.assertSame(newname, updated.getName());
+//        Assert.assertSame(name, updated.getName());
 //        d_getAll();
     }
 

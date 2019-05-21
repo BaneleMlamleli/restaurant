@@ -38,5 +38,11 @@ public class UserAccessRight {
         public UserAccessRight build(){
             return new UserAccessRight(this);
         }
+
+        public Builder copy(UserAccessRight savedUserAccessRight) {
+            this.title = savedUserAccessRight.title;
+            this.username = savedUserAccessRight.username;
+            return this;
+        }
     }
 }
