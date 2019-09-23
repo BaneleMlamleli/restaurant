@@ -15,7 +15,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder cutter)
-        throws Exception{
+            throws Exception{
         cutter.inMemoryAuthentication()
                 .withUser("Banele")
                 .password(encoder().encode("test01"))
@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http)
-        throws Exception{
+            throws Exception{
         http.authorizeRequests()
                 .antMatchers(HttpMethod.POST,"restaurant/verifyUse/Warning/**/create/**").hasRole("Manager")
                 .anyRequest()
