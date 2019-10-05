@@ -5,11 +5,19 @@
  */
 package com.restaurant.Domain.Table;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author Shaun
  */
+@Entity
 public class Table {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int table_id;
     private String table_status;
     private String table_name;

@@ -5,11 +5,19 @@
  */
 package com.restaurant.Domain.Order;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author Shaun
  */
+@Entity
 public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int order_id;
     private String comment;
     private String order_name;
@@ -135,6 +143,15 @@ public class Order {
 
     @Override
     public String toString() {
-        return "OrderImplementation{" + "order_id=" + order_id + ", comment=" + comment + ", order_name=" + order_name + ", table_name=" + table_name + ", waiter_name=" + waiter_name + ", order_status=" + order_status + ", order_date=" + order_date + ", order_bill=" + order_bill + '}';
-    }    
+        return "Order{" +
+                "order_id=" + order_id +
+                ", comment='" + comment + '\'' +
+                ", order_name='" + order_name + '\'' +
+                ", table_name='" + table_name + '\'' +
+                ", waiter_name='" + waiter_name + '\'' +
+                ", order_status='" + order_status + '\'' +
+                ", order_date='" + order_date + '\'' +
+                ", order_bill=" + order_bill +
+                '}';
+    }
 }

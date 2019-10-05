@@ -5,11 +5,20 @@
  */
 package com.restaurant.Domain.Stock;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  *
  * @author banelemlamleli
  */
+@Entity
 public class Stock {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private String itemName;
     private int usage;
 
@@ -18,10 +27,14 @@ public class Stock {
     }
 
     private Stock(Builder builder){
+        this.id = builder.id;
         this.itemName = builder.itemName;
         this.usage = builder.usage;
     }
 
+    public int getId() {
+        return id;
+    }
     public String getItemName() {
         return itemName;
     }
@@ -31,8 +44,14 @@ public class Stock {
     }
 
     public static class Builder {
+        private int id;
         private String itemName;
         private int usage;
+
+        public Builder id(int id){
+            this.id = id;
+            return this;
+        }
 
         public Builder itemName(String itemName){
             this.itemName = itemName;
@@ -49,6 +68,7 @@ public class Stock {
         }
 
         public Builder copy(Stock savedStock) {
+            this.id = savedStock.id;
             this.itemName = savedStock.itemName;
             this.usage = savedStock.usage;
             return this;
@@ -57,6 +77,10 @@ public class Stock {
 
     @Override
     public String toString() {
-        return "StockImplementation{" + "itemName=" + itemName + ", usage=" + usage + '}';
+        return "Stock{" +
+                "id=" + id +
+                ", itemName='" + itemName + '\'' +
+                ", usage=" + usage +
+                '}';
     }
 }

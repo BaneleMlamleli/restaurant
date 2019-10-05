@@ -1,6 +1,15 @@
 package com.restaurant.Domain.Login;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class RegisterNewUser {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private String title;
     private String name;
     private String surname;
@@ -10,10 +19,15 @@ public class RegisterNewUser {
     }
 
     private RegisterNewUser(Builder builder){
+        this.id = builder.id;
         this.title = builder.title;
         this.name = builder.name;
         this.surname = builder.surname;
         this.password = builder.password;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -33,10 +47,16 @@ public class RegisterNewUser {
     }
 
     public static class Builder {
+        private int id;
         private String title;
         private String name;
         private String surname;
         private String password;
+
+        public Builder id(int id){
+            this.id = id;
+            return this;
+        }
 
         public Builder title(String title){
             this.title = title;
@@ -63,6 +83,7 @@ public class RegisterNewUser {
         }
 
         public Object copy(RegisterNewUser savedRegisteredNewUser) {
+            this.id = savedRegisteredNewUser.id;
             this.name = savedRegisteredNewUser.name;
             this.surname = savedRegisteredNewUser.surname;
             this.title = savedRegisteredNewUser.title;

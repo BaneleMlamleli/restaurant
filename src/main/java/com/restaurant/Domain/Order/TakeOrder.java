@@ -22,8 +22,6 @@ public class TakeOrder {
         this.selectedRadioButtonItem = builder.selectedRadioButtonItem;
     }
 
-
-
     public static class Builder {
         private boolean selectedRadioButtonItem;
         private String order_name;
