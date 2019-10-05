@@ -15,7 +15,7 @@ public class Database {
      */
     public static void connection() throws SQLException{
         try{
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant", "root", "B!n@ryM@n01");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/restaurant", "root", "");
             System.out.println("DatabaseFactory connection successfully established");
             /**
              * The purpose of this selection is to check if the stock table is
