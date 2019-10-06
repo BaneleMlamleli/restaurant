@@ -1,25 +1,21 @@
 package com.restaurant.Service.Order.Implementation;
 
-import com.restaurant.Domain.Login.RegisterNewUser;
 import com.restaurant.Domain.Order.OrderStatus;
-import com.restaurant.Repository.Implementation.LoginImplementation.RegisterNewUserImplementation;
-import com.restaurant.Repository.Implementation.OrderImplementation.OrderStatusImplementation;
-import com.restaurant.Repository.Login.RegisterNewUserRepository;
 import com.restaurant.Repository.Order.OrderStatusRepository;
-import com.restaurant.Service.Login.RegisterNewUserService;
 import com.restaurant.Service.Order.OrderStatusService;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Set;
 
 @Service
 public class OrderStatusServiceImpl implements OrderStatusService {
 
     private static OrderStatusServiceImpl service = null;
-    private OrderStatusRepository repository;
+    private OrderStatusRepository orderStatusRepository;
 
     private OrderStatusServiceImpl() {
-        this.repository = OrderStatusImplementation.getRepository();
+//        this.orderStatusRepository = OrderStatusImplementation.getRepository();
     }
 
     public static OrderStatusServiceImpl getService(){
@@ -28,27 +24,28 @@ public class OrderStatusServiceImpl implements OrderStatusService {
     }
 
     @Override
-    public OrderStatus create(OrderStatus orderStatus) {
-        return this.repository.create(orderStatus);
+    public Set<OrderStatus> getAll() {
+        return (Set<OrderStatus>) this.orderStatusRepository.findAll();
     }
 
     @Override
-    public OrderStatus update(OrderStatus orderStatus) {
-        return this.repository.update(orderStatus);
+    public OrderStatus create(OrderStatus orderStatus) {
+        return this.orderStatusRepository.save(orderStatus);
+    }
+
+    @Override
+    public OrderStatus update(OrderStatus order) {
+        return this.orderStatusRepository.save(order);
     }
 
     @Override
     public void delete(String s) {
-        this.repository.delete(s);
+        this.orderStatusRepository.deleteById(s);
     }
 
     @Override
     public OrderStatus read(String s) {
-        return this.repository.read(s);
-    }
-
-    @Override
-    public Set<OrderStatus> getAll() {
-        return this.repository.getAll();
+        Optional<OrderStatus> order = this.orderStatusRepository.findById(s);
+        return order.orElse(null);
     }
 }

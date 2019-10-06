@@ -1,21 +1,23 @@
 package com.restaurant.Service.Login.Implementation;
 
 import com.restaurant.Domain.Login.RegisterNewUser;
-import com.restaurant.Repository.Implementation.LoginImplementation.RegisterNewUserImplementation;
 import com.restaurant.Repository.Login.RegisterNewUserRepository;
 import com.restaurant.Service.Login.RegisterNewUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Set;
 
 @Service
 public class RegisterNewUserServiceImpl implements RegisterNewUserService {
 
     private static RegisterNewUserServiceImpl service = null;
-    private RegisterNewUserRepository repository;
+    @Autowired
+    private RegisterNewUserRepository registerNewUserRepository;
 
     private RegisterNewUserServiceImpl() {
-        this.repository = RegisterNewUserImplementation.getRepository();
+//        this.registerNewUserRepository = RegisterNewUserImplementation.getRepository();
     }
 
     public static RegisterNewUserServiceImpl getService(){
@@ -25,26 +27,28 @@ public class RegisterNewUserServiceImpl implements RegisterNewUserService {
 
     @Override
     public RegisterNewUser create(RegisterNewUser registerNewUser) {
-        return this.repository.create(registerNewUser);
+        return this.registerNewUserRepository.save(registerNewUser);
     }
 
     @Override
     public RegisterNewUser update(RegisterNewUser course) {
-        return this.repository.update(course);
+        return this.registerNewUserRepository.save(course);
     }
 
     @Override
     public void delete(String s) {
-        this.repository.delete(s);
+        this.registerNewUserRepository.deleteById(s);
     }
 
     @Override
     public RegisterNewUser read(String s) {
-        return this.repository.read(s);
+        Optional<RegisterNewUser> regNewUser = this.registerNewUserRepository.findById(s);
+        return regNewUser.orElse(null);
     }
 
     @Override
     public Set<RegisterNewUser> getAll() {
-        return this.repository.getAll();
+        return (Set<RegisterNewUser>) this.registerNewUserRepository.findAll();
+        //return this.repository.getAll();
     }
 }

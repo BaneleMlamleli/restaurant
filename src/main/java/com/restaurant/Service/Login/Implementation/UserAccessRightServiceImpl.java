@@ -1,9 +1,9 @@
 package com.restaurant.Service.Login.Implementation;
 
 import com.restaurant.Domain.Login.UserAccessRight;
-import com.restaurant.Repository.Implementation.LoginImplementation.UserAccessRightImplementation;
 import com.restaurant.Repository.Login.UserAccessRightRepository;
 import com.restaurant.Service.Login.UserAccessRightService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -12,10 +12,11 @@ import java.util.*;
 public class UserAccessRightServiceImpl implements UserAccessRightService {
 
     private static UserAccessRightServiceImpl service = null;
-    private UserAccessRightRepository repository;
+    @Autowired
+    private UserAccessRightRepository userAccessRightRepository;
 
     private UserAccessRightServiceImpl() {
-        this.repository = UserAccessRightImplementation.getRepository();
+//        this.userAccessRightRepository = UserAccessRightImplementation.getRepository();
     }
 
     public static UserAccessRightServiceImpl getService(){
@@ -25,26 +26,27 @@ public class UserAccessRightServiceImpl implements UserAccessRightService {
 
     @Override
     public UserAccessRight create(UserAccessRight userAccessRight) {
-        return this.repository.create(userAccessRight);
+        return this.userAccessRightRepository.save(userAccessRight);
     }
 
     @Override
     public UserAccessRight update(UserAccessRight userAccessRight) {
-        return this.repository.update(userAccessRight);
+        return this.userAccessRightRepository.save(userAccessRight);
     }
 
     @Override
     public void delete(String s) {
-        this.repository.delete(s);
+        this.userAccessRightRepository.deleteById(s);
     }
 
     @Override
     public UserAccessRight read(String s) {
-        return this.repository.read(s);
+        Optional<UserAccessRight> userAccess = this.userAccessRightRepository.findById(s);
+        return userAccess.orElse(null);
     }
 
     @Override
     public Set<UserAccessRight> getAll() {
-        return this.repository.getAll();
+        return (Set<UserAccessRight>) this.userAccessRightRepository.findAll();
     }
 }

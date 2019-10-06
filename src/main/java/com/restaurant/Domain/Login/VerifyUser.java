@@ -57,5 +57,14 @@ public class VerifyUser {
             this.password = saved.password;
             return  this;
         }
+
+        @Override
+        public String toString() {
+            return "Builder{" +
+                    "title='" + title + '\'' +
+                    ", username='" + username + '\'' +
+                    ", password='" + password + '\'' +
+                    '}';
+        }
     }
 }

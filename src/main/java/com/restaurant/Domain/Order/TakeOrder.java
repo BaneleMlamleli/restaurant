@@ -49,6 +49,9 @@ public class TakeOrder {
 
     @Override
     public String toString() {
-        return "OrderImplementation{" + "selectedRadioButtonItem=" + selectedRadioButtonItem + ", order_name=" + order_name + '}';
+        return "TakeOrder{" +
+                "selectedRadioButtonItem=" + selectedRadioButtonItem +
+                ", order_name='" + order_name + '\'' +
+                '}';
     }
 }

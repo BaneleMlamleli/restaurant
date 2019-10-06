@@ -1,20 +1,22 @@
 package com.restaurant.Service.Stock;
 
 import com.restaurant.Domain.Stock.Stock;
-import com.restaurant.Repository.Implementation.StockImplementation.StockImplementation;
 import com.restaurant.Repository.Stock.StockRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Set;
 
 @Service
 public class StockServiceImpl implements StockService {
 
     private static StockServiceImpl service = null;
-    private StockRepository repository;
+    @Autowired
+    private StockRepository stockRepository;
 
     private StockServiceImpl() {
-        this.repository = StockImplementation.getRepository();
+//        this.stockRepository = StockImplementation.getRepository();
     }
 
     public static StockServiceImpl getService(){
@@ -23,27 +25,28 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
+    public Set<Stock> getAll() {
+        return (Set<Stock>) this.stockRepository.findAll();
+    }
+
+    @Override
     public Stock create(Stock stock) {
-        return this.repository.create(stock);
+        return this.stockRepository.save(stock);
     }
 
     @Override
     public Stock update(Stock stock) {
-        return this.repository.update(stock);
+        return this.stockRepository.save(stock);
     }
 
     @Override
     public void delete(String s) {
-        this.repository.delete(s);
+        this.stockRepository.deleteById(s);
     }
 
     @Override
     public Stock read(String s) {
-        return this.repository.read(s);
-    }
-
-    @Override
-    public Set<Stock> getAll() {
-        return this.repository.getAll();
+        Optional<Stock> order = this.stockRepository.findById(s);
+        return order.orElse(null);
     }
 }

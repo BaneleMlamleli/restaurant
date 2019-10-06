@@ -90,5 +90,16 @@ public class RegisterNewUser {
             this.password = savedRegisteredNewUser.password;
             return this;
         }
+
+        @Override
+        public String toString() {
+            return "Builder{" +
+                    "id=" + id +
+                    ", title='" + title + '\'' +
+                    ", name='" + name + '\'' +
+                    ", surname='" + surname + '\'' +
+                    ", password='" + password + '\'' +
+                    '}';
+        }
     }
 }

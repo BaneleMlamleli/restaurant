@@ -17,7 +17,6 @@ import javax.persistence.Id;
 @Entity
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int order_id;
     private String comment;
     private String order_name;
@@ -25,7 +24,7 @@ public class Order {
     private String waiter_name;
     private String order_status;
     private String order_date;
-    private double order_bill;
+    private float order_bill;
 
     private Order(Order order){
 
@@ -70,7 +69,7 @@ public class Order {
         return order_date;
     }
 
-    public double getOrder_bill() {
+    public float getOrder_bill() {
         return order_bill;
     }
 
@@ -82,7 +81,7 @@ public class Order {
         private String waiter_name;
         private String order_status;
         private String order_date;
-        private double order_bill;
+        private float order_bill;
 
         public Builder order_id(int order_id) {
             this.order_id = order_id;
@@ -119,7 +118,7 @@ public class Order {
             return this;
         }
 
-        public Builder order_bill(double order_bill) {
+        public Builder order_bill(float order_bill) {
             this.order_bill = order_bill;
             return this;
         }

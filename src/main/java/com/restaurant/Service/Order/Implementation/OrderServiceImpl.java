@@ -1,21 +1,23 @@
 package com.restaurant.Service.Order.Implementation;
 
 import com.restaurant.Domain.Order.Order;
-import com.restaurant.Repository.Implementation.OrderImplementation.OrderImplementation;
 import com.restaurant.Repository.Order.OrderRepository;
 import com.restaurant.Service.Order.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Set;
 
 @Service
 public class OrderServiceImpl implements OrderService {
 
     private static OrderServiceImpl service = null;
-    private OrderRepository repository;
+    @Autowired
+    private OrderRepository orderRepository;
 
     private OrderServiceImpl() {
-        this.repository = OrderImplementation.getRepository();
+        //this.orderRepository = OrderImplementation.getRepository();
     }
 
     public static OrderServiceImpl getService(){
@@ -24,27 +26,28 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Set<Order> getAll() {
+        return (Set<Order>) this.orderRepository.findAll();
+    }
+
+    @Override
     public Order create(Order order) {
-        return this.repository.create(order);
+        return this.orderRepository.save(order);
     }
 
     @Override
     public Order update(Order order) {
-        return this.repository.update(order);
+        return this.orderRepository.save(order);
     }
 
     @Override
     public void delete(String s) {
-        this.repository.delete(s);
+        this.orderRepository.deleteById(s);
     }
 
     @Override
     public Order read(String s) {
-        return this.repository.read(s);
-    }
-
-    @Override
-    public Set<Order> getAll() {
-        return this.repository.getAll();
+        Optional<Order> order = this.orderRepository.findById(s);
+        return order.orElse(null);
     }
 }

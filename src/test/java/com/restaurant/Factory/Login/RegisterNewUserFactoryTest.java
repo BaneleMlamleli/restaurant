@@ -15,7 +15,7 @@ public class RegisterNewUserFactoryTest {
 
     @Test
     public void buildCourse() {
-        RegisterNewUser r = RegisterNewUserFactory.getRegisterUser(this.testName, "", "", "");
+        RegisterNewUser r = RegisterNewUserFactory.getRegisterUser(this.testName, "Banele", "Mlamleli", "test01");
         Assert.assertNotNull(r.getName());
         Assert.assertNotNull(r);
     }

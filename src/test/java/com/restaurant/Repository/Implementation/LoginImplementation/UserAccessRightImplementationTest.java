@@ -18,19 +18,19 @@ public class UserAccessRightImplementationTest {
     private UserAccessRight userAccessRight;
 
     private UserAccessRight getSavedUserAccessRight() {
-        Set<UserAccessRight> savedUserAccessRight = this.repository.getAll();
+        Set<UserAccessRight> savedUserAccessRight = (Set<UserAccessRight>)this.repository.findAll();
         return savedUserAccessRight.iterator().next();
     }
 
     @Before
     public void setUp() throws Exception {
-        this.repository = UserAccessRightImplementation.getRepository();
+//        this.repository = UserAccessRightImplementation.getRepository();
         this.userAccessRight = UserAccessRightFactory.getUserAccessRight("", "");
     }
 
     @Test
     public void a_create() {
-        UserAccessRight created = this.repository.create(this.userAccessRight);
+        UserAccessRight created = this.repository.save(this.userAccessRight);
         System.out.println("In create, created = " + created);
         d_getAll();
         Assert.assertSame(created, this.userAccessRight);
@@ -40,7 +40,7 @@ public class UserAccessRightImplementationTest {
     public void b_read() {
         UserAccessRight savedUserAccessRight = getSavedUserAccessRight();
         System.out.println("In read, courseId = "+ savedUserAccessRight.getTitle());
-        UserAccessRight read = this.repository.read(savedUserAccessRight.getUsername());
+        UserAccessRight read = this.repository.save(savedUserAccessRight);
         System.out.println("In read, read = " + read);
         d_getAll();
         Assert.assertEquals(savedUserAccessRight, read);
@@ -49,7 +49,7 @@ public class UserAccessRightImplementationTest {
     @Test
     public void e_delete() {
         UserAccessRight savedUserAccessRight = getSavedUserAccessRight();
-        this.repository.delete(savedUserAccessRight.getTitle());
+        this.repository.delete(savedUserAccessRight);
         d_getAll();
     }
 
@@ -58,7 +58,7 @@ public class UserAccessRightImplementationTest {
         String title = "Manager";
         UserAccessRight userAccessRght= new UserAccessRight.Builder().copy(getSavedUserAccessRight()).build();
         System.out.println("In update, about_to_updated = " + userAccessRght);
-        UserAccessRight updated = this.repository.update(userAccessRght);
+        UserAccessRight updated = this.repository.save(userAccessRght);
         System.out.println("In update, updated = " + updated);
         Assert.assertSame(title, updated.getTitle());
         d_getAll();
@@ -66,7 +66,7 @@ public class UserAccessRightImplementationTest {
 
     @Test
     public void d_getAll() {
-        Set<UserAccessRight> all = this.repository.getAll();
+        Set<UserAccessRight> all = (Set<UserAccessRight>)this.repository.findAll();
         System.out.println("In getAll, all = " + all);
         Assert.assertSame(1, all.size());
     }

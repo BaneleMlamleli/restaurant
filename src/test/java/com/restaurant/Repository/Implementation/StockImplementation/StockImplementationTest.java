@@ -23,19 +23,19 @@ public class StockImplementationTest {
     private Stock userAccessRight;
 
     private Stock getSavedStock() {
-        Set<Stock> savedStock = this.repository.getAll();
+        Set<Stock> savedStock = (Set<Stock>)this.repository.findAll();
         return savedStock.iterator().next();
     }
 
     @Before
     public void setUp() throws Exception {
-        this.repository = StockImplementation.getRepository();
+//        this.repository = StockImplementation.getRepository();
         this.userAccessRight = StockFactory.getStock("Sushi", 34);
     }
 
     @Test
     public void a_create() {
-        Stock created = this.repository.create(this.userAccessRight);
+        Stock created = this.repository.save(this.userAccessRight);
         System.out.println("In create, created = " + created);
         d_getAll();
         Assert.assertSame(created, this.userAccessRight);
@@ -45,7 +45,7 @@ public class StockImplementationTest {
     public void b_read() {
         Stock savedStock = getSavedStock();
         System.out.println("In read, courseId = "+ savedStock.getItemName());
-        Stock read = this.repository.read(savedStock.getItemName());
+        Stock read = this.repository.save(savedStock);
         System.out.println("In read, read = " + read);
         d_getAll();
         Assert.assertEquals(savedStock, read);
@@ -54,7 +54,7 @@ public class StockImplementationTest {
     @Test
     public void e_delete() {
         Stock savedStock = getSavedStock();
-        this.repository.delete(savedStock.getItemName());
+        this.repository.delete(savedStock);
         d_getAll();
     }
 
@@ -64,7 +64,7 @@ public class StockImplementationTest {
         String itemNm = "Sushi";
         Stock userAccessRght= new Stock.Builder().copy(getSavedStock()).build();
         System.out.println("In update, about_to_updated = " + userAccessRght);
-        Stock updated = this.repository.update(userAccessRght);
+        Stock updated = this.repository.save(userAccessRght);
         System.out.println("In update, updated = " + updated);
         Assert.assertSame(itemNm, updated.getItemName());
         d_getAll();
@@ -72,7 +72,7 @@ public class StockImplementationTest {
 
     @Test
     public void d_getAll() {
-        Set<Stock> all = this.repository.getAll();
+        Set<Stock> all = (Set<Stock>)this.repository.findAll();
         System.out.println("In getAll, all = " + all);
         Assert.assertSame(1, all.size());
     }

@@ -7,6 +7,7 @@ package com.restaurant.Repository.Order;
 
 import com.restaurant.Domain.Order.TakeOrder;
 import com.restaurant.Repository.MainInterface;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Set;
 
@@ -14,6 +15,6 @@ import java.util.Set;
  *
  * @author banelemlamleli
  */
-public interface TakeOrderRepository extends MainInterface<TakeOrder, String> {
-    Set<TakeOrder> getAll();
+public interface TakeOrderRepository extends JpaRepository<TakeOrder, String> { //MainInterface<TakeOrder, String> {
+//    Set<TakeOrder> getAll();
 }

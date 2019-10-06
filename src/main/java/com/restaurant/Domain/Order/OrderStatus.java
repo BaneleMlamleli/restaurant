@@ -1,5 +1,8 @@
 package com.restaurant.Domain.Order;
 
+import javax.persistence.Entity;
+
+@Entity
 public class OrderStatus {
     private String status;
 
@@ -30,6 +33,13 @@ public class OrderStatus {
         public Builder copy(OrderStatus savedOrderStatus) {
             this.status = savedOrderStatus.status;
             return this;
+        }
+
+        @Override
+        public String toString() {
+            return "Builder{" +
+                    "status='" + status + '\'' +
+                    '}';
         }
     }
 }

@@ -15,19 +15,19 @@ public class RegisterNewUserImplementationTest{
     private RegisterNewUser registerNewUser;
 
     private RegisterNewUser getSavedRegisteredNewUser() {
-        Set<RegisterNewUser> savedRegisteredNewUser = this.repository.getAll();
+        Set<RegisterNewUser> savedRegisteredNewUser = (Set<RegisterNewUser>)this.repository.findAll();
         return savedRegisteredNewUser.iterator().next();
     }
 
     @Before
     public void setUp() throws Exception {
-        this.repository = RegisterNewUserImplementation.getRepository();
+//        this.repository = RegisterNewUserImplementation.getRepository();
         this.registerNewUser = RegisterNewUserFactory.getRegisterUser("", "", "", "");
     }
 
     @Test
     public void a_create() {
-        RegisterNewUser created = this.repository.create(this.registerNewUser);
+        RegisterNewUser created = this.repository.save(this.registerNewUser);
         System.out.println("In create, created = " + created);
         d_getAll();
         Assert.assertSame(created, this.registerNewUser);
@@ -37,7 +37,7 @@ public class RegisterNewUserImplementationTest{
     public void b_read() {
         RegisterNewUser savedRegisteredNewUser = getSavedRegisteredNewUser();
         System.out.println("In read, courseId = "+ savedRegisteredNewUser.getName());
-        RegisterNewUser read = this.repository.read(savedRegisteredNewUser.getSurname());
+        RegisterNewUser read = this.repository.save(savedRegisteredNewUser);
         System.out.println("In read, read = " + read);
         d_getAll();
         Assert.assertEquals(savedRegisteredNewUser, read);
@@ -46,7 +46,7 @@ public class RegisterNewUserImplementationTest{
     @Test
     public void e_delete() {
         RegisterNewUser savedRegisteredNewUser = getSavedRegisteredNewUser();
-        this.repository.delete(savedRegisteredNewUser.getTitle());
+        this.repository.delete(savedRegisteredNewUser);
         d_getAll();
     }
 
@@ -66,7 +66,7 @@ public class RegisterNewUserImplementationTest{
 
     @Test
     public void d_getAll() {
-        Set<RegisterNewUser> all = this.repository.getAll();
+        Set<RegisterNewUser> all = (Set<RegisterNewUser>)this.repository.findAll();
         System.out.println("In getAll, all = " + all);
 //        Assert.assertSame(1, all.size());
     }

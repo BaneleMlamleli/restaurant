@@ -14,19 +14,19 @@ public class VerifyUserImplementationTest {
     private VerifyUser registerNewUser;
 
     private VerifyUser getSavedVerifyUser() {
-        Set<VerifyUser> savedVerifyUser = this.repository.getAll();
+        Set<VerifyUser> savedVerifyUser = (Set<VerifyUser>)this.repository.findAll();
         return savedVerifyUser.iterator().next();
     }
 
     @Before
     public void setUp() throws Exception {
-        this.repository = VerifyUserImplementation.getRepository();
+//        this.repository = VerifyUserImplementation.getRepository();
         this.registerNewUser = VerifyUserFactory.getUserAccessRight("", "", "");
     }
 
     @Test
     public void a_create() {
-        VerifyUser created = this.repository.create(this.registerNewUser);
+        VerifyUser created = this.repository.save(this.registerNewUser);
         System.out.println("In create, created = " + created);
         d_getAll();
         Assert.assertSame(created, this.registerNewUser);
@@ -36,7 +36,7 @@ public class VerifyUserImplementationTest {
     public void b_read() {
         VerifyUser savedVerifyUser = getSavedVerifyUser();
         System.out.println("In read, courseId = "+ savedVerifyUser.getTitle());
-        VerifyUser read = this.repository.read(savedVerifyUser.getUsername());
+        VerifyUser read = this.repository.save(savedVerifyUser);
         System.out.println("In read, read = " + read);
         d_getAll();
         Assert.assertEquals(savedVerifyUser, read);
@@ -45,7 +45,7 @@ public class VerifyUserImplementationTest {
     @Test
     public void e_delete() {
         VerifyUser savedVerifyUser = getSavedVerifyUser();
-        this.repository.delete(savedVerifyUser.getTitle());
+        this.repository.delete(savedVerifyUser);
         d_getAll();
     }
 
@@ -63,7 +63,7 @@ public class VerifyUserImplementationTest {
 
     @Test
     public void d_getAll() {
-        Set<VerifyUser> all = this.repository.getAll();
+        Set<VerifyUser> all = (Set<VerifyUser>)this.repository.findAll();
         System.out.println("In getAll, all = " + all);
 //        Assert.assertSame(1, all.size());
     }

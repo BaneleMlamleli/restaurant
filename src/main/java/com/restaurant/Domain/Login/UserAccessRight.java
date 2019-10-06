@@ -44,5 +44,13 @@ public class UserAccessRight {
             this.username = savedUserAccessRight.username;
             return this;
         }
+
+        @Override
+        public String toString() {
+            return "Builder{" +
+                    "title='" + title + '\'' +
+                    ", username='" + username + '\'' +
+                    '}';
+        }
     }
 }

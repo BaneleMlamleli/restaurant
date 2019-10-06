@@ -7,6 +7,7 @@ package com.restaurant.Repository.Stock;
 
 import com.restaurant.Domain.Stock.Stock;
 import com.restaurant.Repository.MainInterface;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Set;
 
@@ -14,6 +15,6 @@ import java.util.Set;
  *
  * @author banelemlamleli
  */
-public interface StockRepository extends MainInterface<Stock, String> {
-    Set<Stock> getAll();
+public interface StockRepository extends JpaRepository<Stock, String> { //MainInterface<Stock, String> {
+//    Set<Stock> getAll();
 }

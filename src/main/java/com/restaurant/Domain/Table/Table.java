@@ -83,6 +83,11 @@ public class Table {
 
     @Override
     public String toString() {
-        return "TableRepository{" + "table_id=" + table_id + ", table_status=" + table_status + ", table_name=" + table_name + ", waiter_name=" + waiter_name + '}';
+        return "Table{" +
+                "table_id=" + table_id +
+                ", table_status='" + table_status + '\'' +
+                ", table_name='" + table_name + '\'' +
+                ", waiter_name='" + waiter_name + '\'' +
+                '}';
     }
 }
