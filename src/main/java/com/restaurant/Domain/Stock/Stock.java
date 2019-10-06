@@ -20,6 +20,7 @@ public class Stock {
     @Column(name = "stock_id")
     private int id;
     private String itemName;
+    @Column(name = "stock_usage")
     private int usage;
 
     private Stock(Stock stock){
