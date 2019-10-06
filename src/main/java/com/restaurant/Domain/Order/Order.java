@@ -5,16 +5,14 @@
  */
 package com.restaurant.Domain.Order;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  *
  * @author Shaun
  */
 @Entity
+@Table(name = "tblOrder")
 public class Order {
     @Id
     private int order_id;
@@ -24,7 +22,7 @@ public class Order {
     private String waiter_name;
     private String order_status;
     private String order_date;
-    private float order_bill;
+    private double order_bill;
 
     private Order(Order order){
 
@@ -69,7 +67,7 @@ public class Order {
         return order_date;
     }
 
-    public float getOrder_bill() {
+    public double getOrder_bill() {
         return order_bill;
     }
 
@@ -81,7 +79,7 @@ public class Order {
         private String waiter_name;
         private String order_status;
         private String order_date;
-        private float order_bill;
+        private double order_bill;
 
         public Builder order_id(int order_id) {
             this.order_id = order_id;
@@ -118,7 +116,7 @@ public class Order {
             return this;
         }
 
-        public Builder order_bill(float order_bill) {
+        public Builder order_bill(double order_bill) {
             this.order_bill = order_bill;
             return this;
         }

@@ -2,7 +2,6 @@ package com.restaurant.Domain.Order;
 
 import javax.persistence.Entity;
 
-@Entity
 public class OrderStatus {
     private String status;
 

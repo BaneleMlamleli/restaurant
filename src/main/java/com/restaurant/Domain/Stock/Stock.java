@@ -5,19 +5,19 @@
  */
 package com.restaurant.Domain.Stock;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 
 /**
  *
  * @author banelemlamleli
  */
 @Entity
+@Table(name = "tblStock")
 public class Stock {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "stock_id")
     private int id;
     private String itemName;
     private int usage;

@@ -15,6 +15,7 @@ import javax.persistence.Id;
  * @author Shaun
  */
 @Entity
+@javax.persistence.Table(name = "tblTable")
 public class Table {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

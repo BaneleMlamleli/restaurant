@@ -1,12 +1,21 @@
 package com.restaurant.Domain.Login;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class UserAccessRight {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private String title;
     private String username;
 
-    private UserAccessRight(UserAccessRight userAccessRight){
-
-    }
+//    private UserAccessRight(UserAccessRight userAccessRight){
+//
+//    }
 
     private UserAccessRight(UserAccessRight.Builder builder){
         this.title = builder.title;

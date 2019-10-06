@@ -1,6 +1,15 @@
 package com.restaurant.Domain.Login;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class VerifyUser {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private String title;
     private String username;
     private String password;
