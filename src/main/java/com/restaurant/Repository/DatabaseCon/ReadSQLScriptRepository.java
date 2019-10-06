@@ -1,4 +1,0 @@
-package com.restaurant.Repository.DatabaseCon;
-
-public class ReadSQLScriptRepository {
-}
