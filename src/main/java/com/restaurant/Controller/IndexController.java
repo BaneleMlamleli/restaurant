@@ -1,15 +1,28 @@
 package com.restaurant.Controller;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 public class IndexController {
-    @Value("${welcome.message}")
-    private String welcomeMessage;
+
     @GetMapping("/")
-    String index(){
-        return welcomeMessage;
+    public String indexPage(){
+        return "index";
+    }
+
+    @GetMapping("/login.html")
+    public String loginPage(){
+        return "login.html";
+    }
+
+    @GetMapping("/register.html")
+    public String registerPage(){
+        return "register";
+    }
+
+    @GetMapping("/users.html")
+    public String userPage(){
+        return "users";
     }
 }
