@@ -23,7 +23,7 @@ public class OrderController {
 	@GetMapping("/")
 	public String indexPage(Model model, @RequestParam(defaultValue="0") int page){
 		model.addAttribute("data", orderRepository.findAll(new PageRequest(page, 4)));
-		model.addAttribute("currentPAge", page);
+		model.addAttribute("currentPage", page);
 	    return "index";
 	}
 	
