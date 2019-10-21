@@ -1,54 +1,170 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Restaurant</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <link rel="stylesheet" type="text/css" href="./style.css"/>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-          crossorigin="anonymous"/>
+    <script type="text/javascript" src="webjars/jquery/2.2.3/jquery.min.js"></script>
+    <script type="text/javascript" src="webjars/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="webjars/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"/>
+    <script type="text/javascript" th:src="@{script.js}" src="./static/scripts.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
+        body {
+            font-family: sans-serif Quicksand;
+            background-color: aliceblue;
+        }
+
+        .centre-form {
+            width: 50%;
+            margin: 0 auto;
+            padding-bottom: 5vh;
+        }
+
+        .jumbotron{
+            color: white;
+            background-image: url(restaurant.jpg);
+            background-size: cover;
+            height: 50vh;
+        }
+
+        .centre-cards div{
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .custom {
+            margin: 0 auto !important;
+            margin-bottom: 5% !important;
+            margin-left: 50% !important;
+        }
+    </style>
 </head>
 <body>
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-            <div style="text-align: center;">
-                <h1 class="display-5">Welcome to Banele's Restaurant</h1>
-                <h3>Feast, Make friends and enjoy life.</h3>
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <div style="text-align: center;">
+            <h1 class="display-5">Welcome to Banele's Restaurant</h1>
+            <h3>Feast, Make friends and enjoy life.</h3>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="custom"><button class="btn btn-success btnNewOrder">Place new order</button></div>
+    <div class="card">
+        <div class="card-block">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Comment</th>
+                    <th>Order Name</th>
+                    <th>Table Name</th>
+                    <th>Waiter Name</th>
+                    <th>Order Status</th>
+                    <th>Order Date</th>
+                    <th>Order Bill(R)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="order :${data}">
+                    <td th:text="${order.order_id}"></td>
+                    <td th:text="${order.comment}"></td>
+                    <td th:text="${order.order_name}"></td>
+                    <td th:text="${order.table_name}"></td>
+                    <td th:text="${order.waiter_name}"></td>
+                    <td th:text="${order.order_status}"></td>
+                    <td th:text="${order.order_date}"></td>
+                    <td th:text="${order.order_bill}"></td>
+                    <td> <a th:href="@{delete/(id=${order.order_id})}" class="btn btn-danger btnDeleteOrder">Delete</a></td>
+                    <td> <a th:href="@{findOne/(id=${order.order_id})}" class="btn btn-primary btnUpdateOrder">Update</a></td>
+                </tr>
+                </tbody>
+            </table>
+            <hr/>
+            <!-- <ul class="nav nav-pills">
+                <li class="nav-item" th:each="i :${#numbers.sequence(0,data.size())}">
+                    <a th:href="@{/(page=${i})}" th:text="${i}" class="nav-link"
+                    th:classappend="${currentPage}==${i}?'active':''"></a>
+                </li>
+            </ul> -->
+        </div>
+    </div>
+</div>
+
+<div class="myForm">
+    <form th:action="@{/save}" method="post">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">ORDER</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="orderID" class="col-form-label">Order ID:</label>
+                            <input type="text" class="form-control" id="orderID" name="orderID" value="" readonly/>
+                        </div>
+                        <div class="form-group">
+                            <label for="orderName" class="col-form-label">Order Name:</label>
+                            <input type="text" class="form-control" id="orderName" name="orderName" value="" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="tableName" class="col-form-label">Table Name:</label>
+                            <input type="text" class="form-control" id="tableName" name="tableName" value="" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="waiterName" class="col-form-label">Waiter Name:</label>
+                            <input type="text" class="form-control" id="waiterName" name="waiterName" value="" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="orderStatus" class="col-form-label">Order Status (Closed , Pending, Fetch order, New order):</label>
+                            <input type="text" class="form-control" id="orderStatus" name="orderStatus" value="" required/>
+                        </div>
+                        <div class="form-group">
+                            <label for="orderDate" class="col-form-label">Order Date:</label>
+                            <input type="text" class="form-control" id="orderDate" name="orderDate" value="" readonly/>
+                        </div>
+                        <div class="form-group">
+                            <label for="orderBill" class="col-form-label">Order Bill(R):</label>
+                            <input type="number" class="form-control" id="orderBill" name="orderBill" value="" />
+                        </div>
+                        <div class="form-group">
+                            <label for="comment" class="col-form-label">Comment:</label>
+                            <textarea class="form-control" id="comment" name="comment" value=""></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" value="Save order" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="alert alert-danger">Are you sure you want to delete this order?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a href="" class="btn btn-danger" id="delRef">Delete</a>
             </div>
         </div>
     </div>
-    <div class="centre-cards">
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Login</h5>
-                        <p class="card-text">In order to use the system you must login.</p>
-                        <a href="login.html" class="btn btn-primary">Login user</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Register</h5>
-                        <p class="card-text">Register as a new user in order to gain access to the system.</p>
-                        <a href="register.html" class="btn btn-primary">Register</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Amend users</h5>
-                        <p class="card-text">Edit, Delete, View all users in the system.</p>
-                        <a href="users.html" class="btn btn-primary">Amend users</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
 </body>
 </html>

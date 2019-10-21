@@ -12,7 +12,7 @@ body {
 
 .jumbotron{
     color: white;
-    background-image: url(../assets/restaurant.jpg);
+    background-image: url(../static/restaurant.jpg);
     background-size: cover;
     height: 50vh;
 }

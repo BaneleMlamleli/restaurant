@@ -12,32 +12,32 @@ import java.util.Set;
 //@RestController
 @Controller
 public class RegisterNewUserController {
-    @Autowired
-    private RegisterNewUserRepository registerNewUserRepository;
-
-    @PostMapping("/create")
-    public String saveUser(RegisterNewUser registerNewUser){
-        registerNewUserRepository.save(registerNewUser);
-        return "redirect:/";
-    }
-
-    @GetMapping("/delete")
-    public String deleteUser(RegisterNewUser registerNewUser){
-        registerNewUserRepository.delete(registerNewUser);
-        return "redirect:/";
-    }
+//    @Autowired
+//    private RegisterNewUserRepository registerNewUserRepository;
+//
+//    @PostMapping("/create")
+//    public String saveUser(RegisterNewUser registerNewUser){
+//        registerNewUserRepository.save(registerNewUser);
+//        return "redirect:/";
+//    }
+//
+//    @GetMapping("/delete")
+//    public String deleteUser(RegisterNewUser registerNewUser){
+//        registerNewUserRepository.delete(registerNewUser);
+//        return "redirect:/";
+//    }
 
 //    @GetMapping("/findOneUser")
 //    @ResponseBody
 //    public List<RegisterNewUser> findOne(Integer id){
 //        return registerNewUserRepository.findOne(id)
 //    }
-
-    @GetMapping("/findAllUser")
-    @ResponseBody
-    public List<RegisterNewUser> findAllUsers(){
-        return registerNewUserRepository.findAll();
-    }
+//
+//    @GetMapping("/findAllUser")
+//    @ResponseBody
+//    public List<RegisterNewUser> findAllUsers(){
+//        return registerNewUserRepository.findAll();
+//    }
 //
 //    //@PostMapping("/create/{title}/{name}/{surname}/{password}")
 //    @RequestMapping(value = "/create/{title}/{name}/{surname}/{password}", method = RequestMethod.POST)
