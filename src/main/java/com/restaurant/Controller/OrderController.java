@@ -35,8 +35,8 @@ public class OrderController {
 	}
 	
 	@GetMapping("/delete")
-	public String deleteOrder(Integer order_id) {
-		orderRepository.deleteById(order_id);
+	public String deleteOrder(Integer id) {
+		orderRepository.deleteById(id);
 		return "redirect:/";
 	}
 	

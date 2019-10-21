@@ -33,7 +33,7 @@ $(document).ready(function () {
 		}
 	});
 
-	$('.table .btnDeleteOrder').on('click', function(event){
+	$('.table .btnDeleteOrder').on('click', function (event) {
 		event.preventDefault();
 		var href = $(this).attr('href');
 		$('#exampleModalCenter #delRef').attr('href', href);
