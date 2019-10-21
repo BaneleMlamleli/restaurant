@@ -3,6 +3,7 @@ package com.restaurant.Controller;
 import java.util.Optional;
 
 import com.restaurant.Domain.Order;
+import com.restaurant.Domain.Orders;
 import com.restaurant.Repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -28,8 +29,8 @@ public class OrderController {
 	}
 	
 	@PostMapping("/save")
-	public String save(Order order) {
-		orderRepository.save(order);
+	public String save(Orders orders) {
+		orderRepository.save(orders);
 		return "redirect:/";
 	}
 	
@@ -41,7 +42,7 @@ public class OrderController {
 	
 	@GetMapping("/findOne")
 	@ResponseBody
-	public Optional<Order> findOne(Integer id) {
+	public Optional<Orders> findOne(Integer id) {
 		return orderRepository.findById(id);
 	}
 }

@@ -70,8 +70,8 @@
                         <td th:text="${order.order_status}"></td>
                         <td th:text="${order.order_date}"></td>
                         <td th:text="${order.order_bill}"></td>
-                        <td> <a th:href="@{delete/(id=${order.order_id})}" class="btn btn-danger btnDeleteOrder">Delete</a></td>
-                        <td> <a th:href="@{findOne/(id=${order.order_id})}" class="btn btn-primary btnUpdateOrder">Update</a></td>
+                        <td><a th:href="@{findOne/(id=${order.order_id})}" class="btn btn-primary btnUpdateOrder">Update</a> </td>
+                        <td><a th:href="@{delete/(id=${order.order_id})}" class="btn btn-danger btnDeleteOrder">Delete</a> </td>
                     </tr>
                     </tbody>
                 </table>
@@ -84,61 +84,61 @@
                 </ul>
             </div>
         </div>
-    </div>
 
-    <div class="myForm">
-        <form th:action="@{/save}" method="post">
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">ORDER</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="orderID" class="col-form-label">Order ID:</label>
-                                <input type="text" class="form-control" id="orderID" name="orderID" value="" readonly/>
+        <div class="myForm">
+            <form th:action="@{/save}" method="post">
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">ORDER</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                            <div class="form-group">
-                                <label for="orderName" class="col-form-label">Order Name:</label>
-                                <input type="text" class="form-control" id="orderName" name="orderName" value="" required/>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="order_id" class="col-form-label">Order ID:</label>
+                                    <input type="text" class="form-control" id="order_id" name="order_id" value="" readonly/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="order_name" class="col-form-label">Order Name:</label>
+                                    <input type="text" class="form-control" id="order_name" name="order_name" value="" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="table_name" class="col-form-label">Table Name:</label>
+                                    <input type="text" class="form-control" id="table_name" name="table_name" value="" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="waiter_name" class="col-form-label">Waiter Name:</label>
+                                    <input type="text" class="form-control" id="waiter_name" name="waiter_name" value="" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="order_status" class="col-form-label">Order Status (Closed , Pending, Fetch order, New order):</label>
+                                    <input type="text" class="form-control" id="order_status" name="order_status" value="" required/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="order_date" class="col-form-label">Order Date:</label>
+                                    <input type="text" class="form-control" id="order_date" name="order_date" value="" readonly/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="order_bill" class="col-form-label">Order Bill(R):</label>
+                                    <input type="number" class="form-control" id="order_bill" name="order_bill" value="" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="comment" class="col-form-label">Comment:</label>
+                                    <textarea class="form-control" id="comment" name="comment" value=""></textarea>
+                                </div>
                             </div>
-                            <div class="form-group">
-                                <label for="tableName" class="col-form-label">Table Name:</label>
-                                <input type="text" class="form-control" id="tableName" name="tableName" value="" required/>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Save order" />
                             </div>
-                            <div class="form-group">
-                                <label for="waiterName" class="col-form-label">Waiter Name:</label>
-                                <input type="text" class="form-control" id="waiterName" name="waiterName" value="" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="orderStatus" class="col-form-label">Order Status (Closed , Pending, Fetch order, New order):</label>
-                                <input type="text" class="form-control" id="orderStatus" name="orderStatus" value="" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="orderDate" class="col-form-label">Order Date:</label>
-                                <input type="text" class="form-control" id="orderDate" name="orderDate" value="" readonly/>
-                            </div>
-                            <div class="form-group">
-                                <label for="orderBill" class="col-form-label">Order Bill(R):</label>
-                                <input type="number" class="form-control" id="orderBill" name="orderBill" value="" />
-                            </div>
-                            <div class="form-group">
-                                <label for="comment" class="col-form-label">Comment:</label>
-                                <textarea class="form-control" id="comment" name="comment" value=""></textarea>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <input type="submit" class="btn btn-primary" value="Save order" />
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
