@@ -12,13 +12,7 @@
 
         body {
             font-family: sans-serif Quicksand;
-            background-color: aliceblue;
-        }
-
-        .centre-form {
-            width: 50%;
-            margin: 0 auto;
-            padding-bottom: 5vh;
+            background-color: #ccfff8;
         }
 
         .jumbotron{
@@ -41,130 +35,130 @@
     </style>
 </head>
 <body>
-<div class="jumbotron jumbotron-fluid">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <div style="text-align: center;">
+                <h1 class="display-5">Welcome to Banele's Restaurant</h1>
+                <h3>Feast, Make friends and enjoy life.</h3>
+            </div>
+        </div>
+    </div>
     <div class="container">
-        <div style="text-align: center;">
-            <h1 class="display-5">Welcome to Banele's Restaurant</h1>
-            <h3>Feast, Make friends and enjoy life.</h3>
+        <div class="custom"><button class="btn btn-success btnNewOrder">Place new order</button></div>
+        <div class="card">
+            <div class="card-block">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Comment</th>
+                        <th>Order Name</th>
+                        <th>Table Name</th>
+                        <th>Waiter Name</th>
+                        <th>Order Status</th>
+                        <th>Order Date</th>
+                        <th>Order Bill(R)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="order :${data.content}">
+                        <td th:text="${order.order_id}"></td>
+                        <td th:text="${order.comment}"></td>
+                        <td th:text="${order.order_name}"></td>
+                        <td th:text="${order.table_name}"></td>
+                        <td th:text="${order.waiter_name}"></td>
+                        <td th:text="${order.order_status}"></td>
+                        <td th:text="${order.order_date}"></td>
+                        <td th:text="${order.order_bill}"></td>
+                        <td> <a th:href="@{delete/(id=${order.order_id})}" class="btn btn-danger btnDeleteOrder">Delete</a></td>
+                        <td> <a th:href="@{findOne/(id=${order.order_id})}" class="btn btn-primary btnUpdateOrder">Update</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <hr/>
+                <ul class="nav nav-pills">
+                    <li class="nav-item" th:each="i :${#numbers.sequence(0,data.size)}">
+                        <a th:href="@{/(page=${i})}" th:text="${i}" class="nav-link"
+                        th:classappend="${currentPage}==${i}?'active':''"></a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
-<div class="container">
-    <div class="custom"><button class="btn btn-success btnNewOrder">Place new order</button></div>
-    <div class="card">
-        <div class="card-block">
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th>Order ID</th>
-                    <th>Comment</th>
-                    <th>Order Name</th>
-                    <th>Table Name</th>
-                    <th>Waiter Name</th>
-                    <th>Order Status</th>
-                    <th>Order Date</th>
-                    <th>Order Bill(R)</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="order :${data}">
-                    <td th:text="${order.order_id}"></td>
-                    <td th:text="${order.comment}"></td>
-                    <td th:text="${order.order_name}"></td>
-                    <td th:text="${order.table_name}"></td>
-                    <td th:text="${order.waiter_name}"></td>
-                    <td th:text="${order.order_status}"></td>
-                    <td th:text="${order.order_date}"></td>
-                    <td th:text="${order.order_bill}"></td>
-                    <td> <a th:href="@{delete/(id=${order.order_id})}" class="btn btn-danger btnDeleteOrder">Delete</a></td>
-                    <td> <a th:href="@{findOne/(id=${order.order_id})}" class="btn btn-primary btnUpdateOrder">Update</a></td>
-                </tr>
-                </tbody>
-            </table>
-            <hr/>
-            <!-- <ul class="nav nav-pills">
-                <li class="nav-item" th:each="i :${#numbers.sequence(0,data.size())}">
-                    <a th:href="@{/(page=${i})}" th:text="${i}" class="nav-link"
-                    th:classappend="${currentPage}==${i}?'active':''"></a>
-                </li>
-            </ul> -->
-        </div>
-    </div>
-</div>
 
-<div class="myForm">
-    <form th:action="@{/save}" method="post">
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">ORDER</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="orderID" class="col-form-label">Order ID:</label>
-                            <input type="text" class="form-control" id="orderID" name="orderID" value="" readonly/>
+    <div class="myForm">
+        <form th:action="@{/save}" method="post">
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">ORDER</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <div class="form-group">
-                            <label for="orderName" class="col-form-label">Order Name:</label>
-                            <input type="text" class="form-control" id="orderName" name="orderName" value="" required/>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="orderID" class="col-form-label">Order ID:</label>
+                                <input type="text" class="form-control" id="orderID" name="orderID" value="" readonly/>
+                            </div>
+                            <div class="form-group">
+                                <label for="orderName" class="col-form-label">Order Name:</label>
+                                <input type="text" class="form-control" id="orderName" name="orderName" value="" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="tableName" class="col-form-label">Table Name:</label>
+                                <input type="text" class="form-control" id="tableName" name="tableName" value="" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="waiterName" class="col-form-label">Waiter Name:</label>
+                                <input type="text" class="form-control" id="waiterName" name="waiterName" value="" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="orderStatus" class="col-form-label">Order Status (Closed , Pending, Fetch order, New order):</label>
+                                <input type="text" class="form-control" id="orderStatus" name="orderStatus" value="" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="orderDate" class="col-form-label">Order Date:</label>
+                                <input type="text" class="form-control" id="orderDate" name="orderDate" value="" readonly/>
+                            </div>
+                            <div class="form-group">
+                                <label for="orderBill" class="col-form-label">Order Bill(R):</label>
+                                <input type="number" class="form-control" id="orderBill" name="orderBill" value="" />
+                            </div>
+                            <div class="form-group">
+                                <label for="comment" class="col-form-label">Comment:</label>
+                                <textarea class="form-control" id="comment" name="comment" value=""></textarea>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="tableName" class="col-form-label">Table Name:</label>
-                            <input type="text" class="form-control" id="tableName" name="tableName" value="" required/>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <input type="submit" class="btn btn-primary" value="Save order" />
                         </div>
-                        <div class="form-group">
-                            <label for="waiterName" class="col-form-label">Waiter Name:</label>
-                            <input type="text" class="form-control" id="waiterName" name="waiterName" value="" required/>
-                        </div>
-                        <div class="form-group">
-                            <label for="orderStatus" class="col-form-label">Order Status (Closed , Pending, Fetch order, New order):</label>
-                            <input type="text" class="form-control" id="orderStatus" name="orderStatus" value="" required/>
-                        </div>
-                        <div class="form-group">
-                            <label for="orderDate" class="col-form-label">Order Date:</label>
-                            <input type="text" class="form-control" id="orderDate" name="orderDate" value="" readonly/>
-                        </div>
-                        <div class="form-group">
-                            <label for="orderBill" class="col-form-label">Order Bill(R):</label>
-                            <input type="number" class="form-control" id="orderBill" name="orderBill" value="" />
-                        </div>
-                        <div class="form-group">
-                            <label for="comment" class="col-form-label">Comment:</label>
-                            <textarea class="form-control" id="comment" name="comment" value=""></textarea>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <input type="submit" class="btn btn-primary" value="Save order" />
                     </div>
                 </div>
             </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
 
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p class="alert alert-danger">Are you sure you want to delete this order?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <a href="" class="btn btn-danger" id="delRef">Delete</a>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="alert alert-danger">Are you sure you want to delete this order?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="" class="btn btn-danger" id="delRef">Delete</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>

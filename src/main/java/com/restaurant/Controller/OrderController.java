@@ -16,9 +16,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class OrderController {
-	
+
 	@Autowired
 	private OrderRepository orderRepository;
+
 	@GetMapping("/")
 	public String indexPage(Model model, @RequestParam(defaultValue="0") int page){
 		model.addAttribute("data", orderRepository.findAll(new PageRequest(page, 4)));
@@ -33,8 +34,8 @@ public class OrderController {
 	}
 	
 	@GetMapping("/delete")
-	public String deleteOrder(Integer id) {
-		orderRepository.deleteById(id);
+	public String deleteOrder(Integer order_id) {
+		orderRepository.deleteById(order_id);
 		return "redirect:/";
 	}
 	
